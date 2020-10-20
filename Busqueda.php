@@ -9,13 +9,20 @@
 </head>
 <body aria-busy="true">
 <div class="top-container">
+    <?php
+
+    $busqueda = strtolower($_REQUEST['busqueda']);
+    if(empty($busqueda)){
+        header("location: base.php");
+    }
+    ?>
       <nav class="navbar nav1 navbar-expand-lg navbar-dark">
         <a href="#" class="navbar-brand">
           <img src="./img/logo_1.png" alt="" width="80px" height="80px">
         </a>
         <form action="Busqueda.php" method="get" class="form-inline my-2 my-lg-0 visible" >
-        <input class="form-control mr-sm-2" name="busqueda" id="busqueda" type="text" placeholder="Escriba su busqueda" aria-label="Search">
-        <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Buscar" >
+          <input class="form-control mr-sm-2" name="busqueda" id="busqueda" type="text" placeholder="Escriba su busqueda" aria-label="Search" value="<?php echo $busqueda;?>">
+          <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Buscar" >
         </form>
         <div class='content'>
           <a href="./cart.html" class="navbar-brand" id="navbarNav">
@@ -25,6 +32,7 @@
             <img src="./img/baseline_account_circle_white_18dp.png" alt="" width="30px" height="30px">
           </a>
         </div>
+        
       </nav>
   </div>
 
@@ -233,75 +241,6 @@
   </div>
 
   <main class="content">
-        <div class="container-md ">
-            <div id="carousel1" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                <img class="d-block w-100" src="./img/pexels-johannes-plenio-1133504.jpg" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                <img class="d-block w-100" src="./img/pexels-ruvim-miksanskiy-1438761.jpg" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                <img class="d-block w-100" src="./img/pexels-photo-3095934.jpeg" alt="Third slide">
-                </div>
-            </div>
-            <a class="carousel-control-prev" href="#carousel1" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carousel1" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-            </div>
-        </div>
-        <div class="container-md contenerdocarousel">
-            <div id="contenedor2">
-            <div id="carousel2" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner first" id="inside-carousel">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="./img/carousel/pexels-stijn-dijkstra-2583852.jpg" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="./img/carousel/pexels-stijn-dijkstra-2583852.jpg" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="./img/carousel/pexels-stijn-dijkstra-2583852.jpg" alt="Third slide">
-                </div>
-                </div>
-            </div>
-            </div>
-            <div id="contenedor3">
-            <div id="carousel3" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img class="d-block w-100" src="./img/pexels-johannes-plenio-1133504.jpg" alt="First slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="./img/pexels-johannes-plenio-1133504.jpg" alt="Second slide">
-                </div>
-                <div class="carousel-item">
-                    <img class="d-block w-100" src="./img/pexels-johannes-plenio-1133504.jpg" alt="Third slide">
-                </div>
-                </div>
-            </div>
-                <div id="carousel3" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                    <img class="d-block w-100" src="./img/pexels-johannes-plenio-1133504.jpg" alt="First slide">
-                    </div>
-                    <div class="carousel-item">
-                    <img class="d-block w-100" src="./img/pexels-johannes-plenio-1133504.jpg" alt="Second slide">
-                    </div>
-                    <div class="carousel-item">
-                    <img class="d-block w-100" src="./img/pexels-johannes-plenio-1133504.jpg" alt="Third slide">
-                    </div>
-                </div>
-                </div>
-            </div>
-        </div>
-
         <hr>
         <section id='productos1'>
         <div class="container mt-5">
@@ -314,13 +253,11 @@
             <!-- Grid row -->
             <div class="row">    
               <!-- Grid column -->
+                <!-- Esto debo cambiar -->
                 <?php
-                    $rand = range(1, 500);
-                    shuffle($rand);
-                    $i = 1;
-                    $sql1 = "SELECT * FROM 
-                    (SELECT * FROM PROD INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria ORDER BY dbms_random.value)
-                    WHERE rownum <= 4";
+                $i=1;
+                    $sql1 = "SELECT ID_PRODUCTO, NOMBRE_CATEGORIA, PRECIO, NOMBRE_PRODUCTO
+                    FROM prod INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria WHERE upper(nombre_producto) LIKE upper('%$busqueda%')";
                     $conn = oci_connect("jordi", "clave", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
@@ -385,7 +322,7 @@
             <!-- Section description -->
             <p class="grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit fugit, error amet numquam iure provident voluptate esse quasi nostrum quisquam eum porro a pariatur veniam.</p>      
             <!-- Grid row -->
-            <div class="row">    
+            <div class="row">  
               <!-- Grid column -->
                 <?php
                     $rand = range(1, 500);
