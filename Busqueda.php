@@ -329,63 +329,71 @@
             <!-- Section description -->
             <p class="grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit fugit, error amet numquam iure provident voluptate esse quasi nostrum quisquam eum porro a pariatur veniam.</p>      
             <!-- Grid row -->
-            <div class="row">  
-              <!-- Grid column -->
-                <?php
+            <div class="row">
+                    <?php
                     $rand = range(1, 500);
                     shuffle($rand);
                     $i = 1;
                     $sql1 = "SELECT * FROM 
                     (SELECT * FROM PROD INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria ORDER BY dbms_random.value)
-                    WHERE rownum <= 4";
+                    WHERE rownum <= 3";
                     $conn = oci_connect("jordi", "clave", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
-                ?>
-                <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch">
-                    <!-- Card -->
-                    <div class="card align-items-center">
-                    <!-- Card image -->
-                    <div class="view overlay">
-                        <?php
-                        echo "<img src='prueba.php?id=".$row['ID_PRODUCTO']."' class='card-img-top'/>";
-                        ?>
-                        <a>
-                        <div class="mask rgba-white-slight"></div>
+                    ?>
+                    <div class="col-lg-4 col-md-12 mb-4">
+                        <a href="" class="waves-effect waves-light">
+                            <?php
+                            echo "<img src='prueba.php?id=".$row['ID_PRODUCTO']."' class='img-responsive producto_imagen' alt='' >"
+                            ?>
                         </a>
-                    </div>
-                    <!-- Card image -->
-                    <!-- Card content -->
-                    <div class="card-body text-center">
-                        <!-- Category & Title -->
-                        <a href="" class="grey-text">
-                        <?php
-                            echo "<h6>".$row['NOMBRE_CATEGORIA']."</h6>";
-                        ?> 
-                        </a>
-                        <h5 class="mb-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="mb-1 texto_categoria">
+                                    <a href="" class="font-weight-bold black-text">
+                                        <?php
+                                        echo $row['NOMBRE_CATEGORIA'];
+                                        ?>
+                                    </a>
+                                </p>
+		                  	<h5 class="mb-1 texto_producto">
                         <strong>
                             <?php
                             echo "<a href='producto.php?id=".$row['ID_PRODUCTO']."' class='dark-grey-text'>".$row['NOMBRE_PRODUCTO']."</a>";
                             ?>
                         </strong>
                         </h5>
-                        <h5 class="font-weight-bold blue-text mb-0">
-                            <?php
-                                echo "<strong>Q.".$row['PRECIO']."</strong>"
-                            ?>
-                        </h5>
+                                <p class="mb-1">
+                                    <small class="mr-1">
+                                        <?php
+                                            if($row['DESCUENTO'] == 0){
+                                                echo "<span class='red-text font-weight-bold precio_producto'>
+                                                    <strong>Q.".$row['PRECIO']."</strong>
+                                                </span>";
+                                            }else{
+                                                echo "
+                                                <span class='red-text font-weight-bold precio_producto'>
+                                                    <strong>Q.".$row['DESCUENTO']."</strong>
+                                                </span>
+                                                <span class='grey-text precio_producto'>
+                                                <small>
+                                                    <s>Q.".$row['PRECIO']."</s>
+                                                </small>
+                                                </span>";
+                                            }
+                                        ?>
+                                    </small>
+                                </p>
+                                <button type="button" class="btn btn-black btn-rounded btn-sm px-3">Buy Now</button>
+                                <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">Details</button>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Card content -->
-                    </div>
-                    <!-- Card -->
+                    <?php
+                        }
+                    ?>
                 </div>
-                <?php
-                 $i++;
-                }
-                ?>
-            </div>
             <!-- Grid row -->    
           </section>
           <!--Section: Content-->
