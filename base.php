@@ -128,9 +128,8 @@
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
                   ?>
-                    <a class="dropdown-item menunav" href="#">
                       <?php  
-                      echo $row['NOMBRE_CATEGORIA'];
+                        echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
                       ?>
                     </a>
                     <?php
@@ -144,8 +143,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <?php
-                    $sql1 = "SELECT * FROM CAT
-                    INNER JOIN cat
+                    $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA 
+                    FROM CAT 
                     WHERE CAT_ID_CATEGORIA = 5";
                     $conn = oci_connect("jordi", "clave", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
@@ -153,7 +152,7 @@
                     while($row = oci_fetch_array($prueba)){
                   ?>
                       <?php  
-                        echo "<a class='dropdown-item' href='compras.php?id=".$row['CAT_ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
+                        echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
                       ?>
                     <?php
                     }
@@ -237,13 +236,13 @@
             <div id="carousel1" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                <img class="d-block w-100" src="./img/pexels-johannes-plenio-1133504.jpg" alt="First slide">
+                <img class="d-block w-100" src="./img/carousel/2k21 azul.jpg" alt="First slide">
                 </div>
                 <div class="carousel-item">
-                <img class="d-block w-100" src="./img/pexels-ruvim-miksanskiy-1438761.jpg" alt="Second slide">
+                <img class="d-block w-100" src="./img/carousel/fall guys rosado.jpg" alt="Second slide">
                 </div>
                 <div class="carousel-item">
-                <img class="d-block w-100" src="./img/pexels-photo-3095934.jpeg" alt="Third slide">
+                <img class="d-block w-100" src="./img/carousel/red dead rosado.jpg" alt="Third slide">
                 </div>
             </div>
             <a class="carousel-control-prev" href="#carousel1" role="button" data-slide="prev">
@@ -261,13 +260,13 @@
             <div id="carousel2" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner first" id="inside-carousel">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="./img/carousel/pexels-stijn-dijkstra-2583852.jpg" alt="First slide">
+                    <img class="d-block w-100" src="./img/carousel/JBL go 2.jpg" alt="First slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="./img/carousel/pexels-stijn-dijkstra-2583852.jpg" alt="Second slide">
+                    <img class="d-block w-100" src="./img/carousel/s20.jpg" alt="Second slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="./img/carousel/pexels-stijn-dijkstra-2583852.jpg" alt="Third slide">
+                    <img class="d-block w-100" src="./img/carousel/rog maximus.jpg" alt="Third slide">
                 </div>
                 </div>
             </div>
@@ -276,26 +275,26 @@
             <div id="carousel3" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100" src="./img/pexels-johannes-plenio-1133504.jpg" alt="First slide">
+                    <img class="d-block w-100" src="./img/carousel/yeti amarillo.jpg" alt="First slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="./img/pexels-johannes-plenio-1133504.jpg" alt="Second slide">
+                    <img class="d-block w-100" src="./img/carousel/xiaomi amarillo.jpg" alt="Second slide">
                 </div>
                 <div class="carousel-item">
-                    <img class="d-block w-100" src="./img/pexels-johannes-plenio-1133504.jpg" alt="Third slide">
+                    <img class="d-block w-100" src="./img/carousel/2080 amarillo.jpg" alt="Third slide">
                 </div>
                 </div>
             </div>
                 <div id="carousel3" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                    <img class="d-block w-100" src="./img/pexels-johannes-plenio-1133504.jpg" alt="First slide">
+                    <img class="d-block w-100" src="./img/carousel/beat saber azul.jpg" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                    <img class="d-block w-100" src="./img/pexels-johannes-plenio-1133504.jpg" alt="Second slide">
+                    <img class="d-block w-100" src="./img/carousel/i9 rosado.jpg" alt="Second slide">
                     </div>
                     <div class="carousel-item">
-                    <img class="d-block w-100" src="./img/pexels-johannes-plenio-1133504.jpg" alt="Third slide">
+                    <img class="d-block w-100" src="./img/carousel/cyberpunk AZUL.jpg" alt="Third slide">
                     </div>
                 </div>
                 </div>
@@ -399,7 +398,7 @@
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
                 ?>
-                <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch">
+                <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch prueba">
                     <!-- Card -->
                     <div class="card align-items-center">
                     <!-- Card image -->
@@ -415,11 +414,10 @@
                     <!-- Card content -->
                     <div class="card-body text-center">
                         <!-- Category & Title -->
-                        <a href="" class="grey-text">
-                        <?php
-                            echo "<h6>".$row['NOMBRE_CATEGORIA']."</h6>";
-                        ?> 
-                        </a>
+                          <a href="" class="grey-text">
+                          <?php
+                              echo "<h6>".$row['NOMBRE_CATEGORIA']."</h6>";
+                          ?> 
                         <h5 class="mb-3">
                         <strong>
                             <?php
