@@ -207,4 +207,59 @@ button.navbar-toggler{
 
 .precio_producto{
     font-size: 20px;
+    padding: 15px;
+}
+
+.boton_compra{
+    background-color: #29bf12;
+    color: white;
+    size: 15px;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px 10px;
+}
+
+.boton_compra:hover{
+    background-color: #abff4f;
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    transition: 0.5s;
+    perspective: 1000px;
+}
+
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+
+.boton_compra2{
+    background-color: #00b4d8;
+    color: white;
+    size: 15px;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 0px 10px;
+}
+
+.boton_compra2:hover{
+    background-color: #ade8f4;
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    transition: 0.5s;
+    perspective: 1000px;
 }

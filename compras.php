@@ -23,7 +23,7 @@
                         while($row = oci_fetch_array($prueba)){
                     ?>
                     <div class="col-lg-4 col-md-12 mb-4">
-                        <a href="" class="waves-effect waves-light">
+                        <a <?php echo "href='producto.php?id=".$row['ID_PRODUCTO']."'"; ?> class="waves-effect waves-light">
                             <?php
                             echo "<img src='prueba.php?id=".$row['ID_PRODUCTO']."' class='img-responsive producto_imagen' alt='' >"
                             ?>
@@ -31,7 +31,7 @@
                         <div class="card">
                             <div class="card-body">
                                 <p class="mb-1 texto_producto">
-                                    <a href="" class="font-weight-bold black-text">
+                                    <a <?php echo "href='producto.php?id=".$row['ID_PRODUCTO']."'"; ?> class="font-weight-bold black-text">
                                         <?php
                                         echo $row['NOMBRE_PRODUCTO'];
                                         ?>
@@ -58,8 +58,8 @@
                                         ?>
                                     </small>
                                 </p>
-                                <button type="button" class="btn btn-black btn-rounded btn-sm px-3">Buy Now</button>
-                                <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">Details</button>
+                                <button type="button" class="btn btn-black btn-rounded btn-sm px-3 boton_compra two">Comprar</button>
+                                <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra2">Carrito</button>
                             </div>
                         </div>
                     </div>

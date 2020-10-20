@@ -21,7 +21,7 @@
           <a href="./cart.html" class="navbar-brand" id="navbarNav">
             <img src="./img/outline_shopping_cart_white_18dp.png" alt="" width="30px" height="30px">
           </a>
-          <a href="./login.html" class="navbar-brand" id="navbarNav">
+          <a href="./login.php" class="navbar-brand" id="navbarNav">
             <img src="./img/baseline_account_circle_white_18dp.png" alt="" width="30px" height="30px">
           </a>
         </div>
@@ -116,8 +116,28 @@
                     </li>
                   </ul>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Electrodomesticos</a>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Hogar
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <?php
+                        $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA
+                        FROM CAT
+                        WHERE CAT_ID_CATEGORIA = 38" ;
+                        $conn = oci_connect("diegopapi", "toor", "localhost:1521/xe", 'AL32UTF8');
+                        $prueba = oci_parse($conn, $sql1);
+                        oci_execute($prueba);
+                        while($row = oci_fetch_array($prueba)){
+                      ?>
+                          <?php  
+                            echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
+                          ?>
+                        </a>
+                        <?php
+                        }
+                        ?>
+                  </div>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
