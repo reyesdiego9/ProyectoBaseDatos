@@ -130,15 +130,14 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <?php
-                    $sql1 = "SELECT Nombre_Categoria FROM CAT WHERE CAT_ID_CATEGORIA = 11" ;
+                    $sql1 = "SELECT NOMBRE_CATEGORIA, ID_CATEGORIA FROM CAT WHERE CAT_ID_CATEGORIA = 11" ;
                     $conn = oci_connect("jordi", "clave", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
                   ?>
-                    <a class="dropdown-item menunav" href="#">
                       <?php  
-                      echo $row['NOMBRE_CATEGORIA'];
+                        echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
                       ?>
                     </a>
                     <?php
@@ -152,8 +151,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <?php
-                    $sql1 = "SELECT * FROM CAT
-                    INNER JOIN cat
+                    $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA 
+                    FROM CAT 
                     WHERE CAT_ID_CATEGORIA = 5";
                     $conn = oci_connect("jordi", "clave", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
@@ -161,7 +160,7 @@
                     while($row = oci_fetch_array($prueba)){
                   ?>
                       <?php  
-                        echo "<a class='dropdown-item' href='compras.php?id=".$row['CAT_ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
+                        echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
                       ?>
                     <?php
                     }
@@ -247,65 +246,73 @@
           <!--Section: Content-->
           <section class="dark-grey-text text-center">  
             <!-- Section heading -->
-            <h3 class="font-weight-bold mb-4 pb-2">Our bestsellers</h3>
+            <h3 class="font-weight-bold mb-4 pb-2 nombrebusqueda">
+           <?php echo $busqueda ?>
+            </h3>
             <!-- Section description -->
             <p class="grey-text w-responsive mx-auto mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit fugit, error amet numquam iure provident voluptate esse quasi nostrum quisquam eum porro a pariatur veniam.</p>      
             <!-- Grid row -->
-            <div class="row">    
-              <!-- Grid column -->
-                <!-- Esto debo cambiar -->
-                <?php
-                $i=1;
-                    $sql1 = "SELECT ID_PRODUCTO, NOMBRE_CATEGORIA, PRECIO, NOMBRE_PRODUCTO
+            <div class="row">
+                    <?php
+                    $sql1 = "SELECT ID_PRODUCTO, NOMBRE_CATEGORIA, PRECIO, NOMBRE_PRODUCTO, DESCUENTO
                     FROM prod INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria WHERE upper(nombre_producto) LIKE upper('%$busqueda%')";
                     $conn = oci_connect("jordi", "clave", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
-                ?>
-                <div class="col-lg-3 col-md-6 mb-4 d-flex align-items-stretch">
-                    <!-- Card -->
-                    <div class="card align-items-center">
-                    <!-- Card image -->
-                    <div class="view overlay">
-                        <?php
-                        echo "<img src='prueba.php?id=".$row['ID_PRODUCTO']."' class='card-img-top'/>";
-                        ?>
-                        <a>
-                        <div class="mask rgba-white-slight"></div>
-                        </a>
-                    </div>
-                    <!-- Card image -->
-                    <!-- Card content -->
-                    <div class="card-body text-center">
-                        <!-- Category & Title -->
-                        <a href="" class="grey-text">
-                        <?php
-                            echo "<h6>".$row['NOMBRE_CATEGORIA']."</h6>";
-                        ?> 
-                        </a>
-                        <h5 class="mb-3">
-                        <strong>
+                    ?>
+                    <div class="col-lg-4 col-md-12 mb-4">
+                        <a href="" class="waves-effect waves-light">
                             <?php
-                            echo "<a href='producto.php?id=".$row['ID_PRODUCTO']."' class='dark-grey-text'>".$row['NOMBRE_PRODUCTO']."</a>";
+                            echo "<img src='prueba.php?id=".$row['ID_PRODUCTO']."' class='img-responsive producto_imagen' alt='' >"
                             ?>
-                        </strong>
-                        </h5>
-                        <h5 class="font-weight-bold blue-text mb-0">
-                            <?php
-                                echo "<strong>Q.".$row['PRECIO']."</strong>"
-                            ?>
-                        </h5>
+                        </a>
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="mb-1 texto_producto">
+                                    <a href="" class="font-weight-bold black-text">
+                                        <?php
+                                        echo $row['NOMBRE_PRODUCTO'];
+                                        ?>
+                                    </a>
+                                </p>
+                                <p class="mb-1 texto_categoria">
+                                    <a href="" class="font-weight-bold black-text">
+                                        <?php
+                                        echo $row['NOMBRE_CATEGORIA'];
+                                        ?>
+                                    </a>
+                                </p>
+                                <p class="mb-1">
+                                    <small class="mr-1">
+                                        <?php
+                                            if($row['DESCUENTO'] == 0){
+                                                echo "<span class='red-text font-weight-bold precio_producto'>
+                                                    <strong>Q.".$row['PRECIO']."</strong>
+                                                </span>";
+                                            }else{
+                                                echo "
+                                                <span class='red-text font-weight-bold precio_producto'>
+                                                    <strong>Q.".$row['DESCUENTO']."</strong>
+                                                </span>
+                                                <span class='grey-text precio_producto'>
+                                                <small>
+                                                    <s>Q.".$row['PRECIO']."</s>
+                                                </small>
+                                                </span>";
+                                            }
+                                        ?>
+                                    </small>
+                                </p>
+                                <button type="button" class="btn btn-black btn-rounded btn-sm px-3">Buy Now</button>
+                                <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">Details</button>
+                            </div>
+                        </div>
                     </div>
-                    <!-- Card content -->
-                    </div>
-                    <!-- Card -->
+                    <?php
+                        }
+                    ?>
                 </div>
-                <?php
-                 $i++;
-                }
-                ?>
-            </div>
             <!-- Grid row -->    
           </section>
           <!--Section: Content-->

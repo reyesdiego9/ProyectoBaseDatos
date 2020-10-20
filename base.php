@@ -122,7 +122,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <?php
-                    $sql1 = "SELECT Nombre_Categoria FROM CAT WHERE CAT_ID_CATEGORIA = 11" ;
+                    $sql1 = "SELECT NOMBRE_CATEGORIA, ID_CATEGORIA FROM CAT WHERE CAT_ID_CATEGORIA = 11" ;
                     $conn = oci_connect("jordi", "clave", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
