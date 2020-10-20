@@ -187,3 +187,24 @@ button.navbar-toggler{
 .pagination {
     margin-top: 20px;
 }
+
+.imagen_producto{
+    width: 100%;
+}
+
+.producto_imagen{
+    width:300px;
+    height: 300px;
+    object-fit: contain;
+}
+
+.texto_producto{
+    font-size: 20px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+
+.precio_producto{
+    font-size: 20px;
+}

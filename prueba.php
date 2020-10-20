@@ -8,7 +8,7 @@ if (!$row) {
        header('Status: 404 Not Found');
 } else {
        $img = $row['IMAGEN']->load();
-       header("Content-type: image/jpeg");
+       header("Content-type: image/*");
        print $img;
 }
 ?>
