@@ -2,6 +2,18 @@
     include_once './global/config.php';
     include './carrito.php';
     include './templates/header.php';
+    $sql1 = "INSERT INTO FACTURA (ID_FACTURA, FECHA, ID_PAGO, EMAIL) VALUES (:id,:fecha,:pago, :email)";
+$conn = oci_connect("jordi", "clave", "localhost:1521/xe", 'AL32UTF8');
+$prueba = oci_parse($conn, $sql1);
+$correo ="jordiquintal622@gmail.com";
+$idfact=(int)1;
+$fecha="DATE '2020-10-21'";
+oci_bind_by_name($prueba, ':id', $idfact);
+oci_bind_by_name($prueba, ':fecha', $fecha);
+oci_bind_by_name($prueba, ':pago', $idfact);
+oci_bind_by_name($prueba, ':email', $correo);
+oci_execute($prueba);
+
 ?>
 
 <br>
@@ -86,16 +98,22 @@
             <strong>Q<?php echo number_format($total,2) ?></strong>
             </h4>
         </td>
-        <td colspan="3" class="text-right">
-            <button type="button" class="btn btn-primary btn-rounded">Complete purchase
+       <!--  <form action="Ccompra.php" colspan="3" class="text-right">
+            <button type="submit" class="btn btn-primary btn-rounded">COMPLETAR COMPRA
             <i class="fas fa-angle-right right"></i>
             </button>
-        </td>
+        </form> -->
         </tr>
           <!-- Fourth row -->
 
         </tbody>
+        
       </table>
+      <form action="Ccompra.php" method="POST" class="form-inline my-2 my-lg-0 visible" >
+        <button type="submit" class="btn btn-primary btn-rounded">COMPLETAR COMPRA
+            <i class="fas fa-angle-right right"></i>
+        </button>
+        </form>
     </div>
   </section>
   <!--Section: Content-->

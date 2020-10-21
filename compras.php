@@ -3,6 +3,7 @@
     include_once './global/conexion.php';
     include './carrito.php';
     include './templates/header.php';
+    include 'Ccompra.php';
 ?>
     <main>
         <div class="container my-5 py-5">
