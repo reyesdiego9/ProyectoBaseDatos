@@ -1,4 +1,5 @@
 <?php
+
     include_once './global/config.php';
     include './carrito.php';
     include './templates/header.php';
@@ -8,8 +9,6 @@
 <h3>Lista del carrito</h3>
 <?php if(!empty($_SESSION['CARRITO'])) { ?>
     <div class="container my-5 py-3 z-depth-1 rounded">
-
-
   <!--Section: Content-->
   <section class="dark-grey-text">
 
@@ -51,10 +50,11 @@
             <td></td>
             <td>Q<?php echo $producto['PRECIO'] ?></td>
             <td>
-            <input name="cantidad" id="cantidad" type="number" value="<?php echo $producto['CANTIDAD'] ?>" aria-label="Search" class="form-control" style="width: 100px">
+                <strong><?php echo$producto['CANTIDAD'] ?></strong>
             </td>
             <td class="font-weight-bold">
-            <strong>Q<?php echo number_format($producto['PRECIO']*$producto['CANTIDAD'],2)  ?></strong>
+            <strong>Q<?php 
+            echo number_format($producto['PRECIO']*$producto['CANTIDAD'])  ?></strong>
             </td>
             <td>
             <form action="" method="post">

@@ -1,3 +1,36 @@
+<?php
+  include './global/conexion.php'; 
+  if(!empty($_POST['nombre']) && 
+    !empty($_POST['apellido']) && 
+    !empty($_POST['correo']) && 
+    !empty($_POST['apellido']) &&
+    !empty($_POST['passw']) &&
+    !empty($_POST['telefono']) &&
+    !empty($_POST['dir'])
+    ){
+        $mensaje = "";
+        $sql = 'INSERT INTO 
+        CLIENTE(EMAIL, NOMBRE_CLIENTE, APELLIDOS_CLIENTE, DIRECCION, CONTRASEÑA, NUM_TELEFONO)
+        VALUES (:correo, :nombre, :apellido, :dir, :passw, :telefono)';
+        $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
+        $prueba = oci_parse($conn, $sql);
+        oci_bind_by_name($prueba, ':correo', strtolower($_POST['correo']));
+        oci_bind_by_name($prueba, ':nombre', strtoupper($_POST['nombre']));
+        oci_bind_by_name($prueba, ':apellido', strtoupper($_POST['apellido']));
+        oci_bind_by_name($prueba, ':telefono', $_POST['telefono']);
+        oci_bind_by_name($prueba, ':dir', strtoupper($_POST['dir']));
+        $password = password_hash( $_POST['passw'], PASSWORD_BCRYPT);
+        oci_bind_by_name($prueba, ':passw', $password);
+        oci_execute($prueba);
+        if( oci_execute($prueba)){
+        $mensaje = "Usuario Registrado";
+        }else{
+        $mensaje = "Error con el usuario";
+        }
+    }else{
+        $mensaje = "Error";
+    }
+?>
 <html>
     <head>
         <base target="_parent">
@@ -53,18 +86,6 @@
       <div class="container">
         <!--Grid row-->
         <div class="row pt-lg-5 mt-lg-5">
-          <!--Grid column-->
-          <div class="col-md-6 mb-5 mt-md-0 mt-5 white-text text-center text-md-left wow fadeInLeft" data-wow-delay="0.3s">
-            <h1 class="display-4 font-weight-bold">Lorem ipsum</h1>
-            <hr class="hr-light">
-            <h6 class="mb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem repellendus quasi
-              fuga
-              nesciunt dolorum nulla magnam veniam sapiente! Commodi sequi non animi ea
-              dolor quisquam iste.</h6>
-            <a class="btn btn-outline-white btn-rounded waves-effect waves-light">Learn more</a>
-          </div>
-          <!--Grid column-->
-          <!--Grid column-->
           <div class="col-md-6 col-xl-5 mb-4">
             <!--Form-->
             <div class="card wow fadeInRight" data-wow-delay="0.3s">
@@ -72,36 +93,51 @@
                 <!--Header-->
                 <div class="text-center">
                   <h3 class="dark-grey-text">
-                    <strong>Write to us:</strong>
+                    <strong>Registrate</strong>
                   </h3>
                   <hr>
                 </div>
                 <!--Body-->
-                <div class="md-form">
-                  <i class="fas fa-user prefix grey-text"></i>
-                  <input type="text" id="form3" class="form-control">
-                  <label for="form3">Your name</label>
+                <div class='alert alert-success'>
+                  <?php
+                    echo $mensaje;
+                  ?>
                 </div>
-                <div class="md-form">
-                  <i class="fas fa-envelope prefix grey-text"></i>
-                  <input type="text" id="form2" class="form-control">
-                  <label for="form2">Your email</label>
-                </div>
-                <!--Textarea with icon prefix-->
-                <div class="md-form">
-                  <i class="fas fa-pencil-alt prefix grey-text"></i>
-                  <textarea type="text" id="form8" class="md-textarea form-control" rows="3"></textarea>
-                  <label for="form8">Your message</label>
-                </div>
-                <div class="text-center mt-3">
-                  <button class="btn btn-indigo btn-rounded waves-effect waves-light">Send</button>
-                  <hr>
-                  <fieldset class="form-check">
-                    <input class="form-check-input" type="checkbox" id="checkbox1">
-                    <label class="form-check-label" for="checkbox1">Subscribe me to the
-                      newsletter</label>
-                  </fieldset>
-                </div>
+                <form action="signin.php" method="post">
+                  <div class="md-form">
+                    <i class="fas fa-user prefix grey-text"></i>
+                    <input type="text" id="form3" class="form-control" name="nombre" required>
+                    <label for="form1">Nombre</label>
+                  </div>
+                  <div class="md-form">
+                    <i class="fas fa-user prefix grey-text"></i>
+                    <input type="text" id="form2" class="form-control" name="apellido" required>
+                    <label for="form2">Apellido</label>
+                  </div>
+                  <div class="md-form">
+                    <i class="fas fa-envelope prefix grey-text"></i>
+                    <input type="email" id="form2" class="form-control" name='correo' required>
+                    <label for="form3">Correo</label>
+                  </div>
+                  <div class="md-form">
+                    <i class="fas fa-lock prefix grey-text"></i>
+                    <input type="password" id="form2" class="form-control" name='passw' required>
+                    <label for="form4" pass>Contraseña</label>
+                  </div>
+                  <div class="md-form">
+                    <i class="fas fa-phone prefix grey-text"></i>
+                    <input type="tel" id="form2" class="form-control" name='telefono' required>
+                    <label for="form5">Telefono</label>
+                  </div>
+                  <div class="md-form">
+                    <i class="fas fa-street-view prefix grey-text"></i>
+                    <input type="tel" id="form2" class="form-control" name='dir' required>
+                    <label for="form6">Dirección</label>
+                  </div>
+                  <div class="text-center mt-3">
+                    <button type='submit' value='send' class="btn btn-indigo btn-rounded waves-effect waves-light">Send</button>
+                  </div>
+                </form>
               </div>
             </div>
             <!--/.Form-->

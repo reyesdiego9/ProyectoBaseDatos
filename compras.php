@@ -78,8 +78,8 @@
                                     type="submit"
                                     value="Agregar" 
                                     name='btnAccion'> 
-                                    Carrito
-                                </button>
+                                        Carrito
+                                    </button>
                                 <a 
                                 type="submit"
                                 class="btn btn-black btn-rounded btn-sm px-3 boton_compra two"
@@ -87,7 +87,7 @@
                                 name='btnAccion'
                                 href="./mostrarCarrito.php">Informacion
                                 </a>
-                            </form>
+                                </form>
                             </div>
                         </div>
                     </div>
