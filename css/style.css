@@ -263,3 +263,13 @@ button.navbar-toggler{
     transition: 0.5s;
     perspective: 1000px;
 }
+
+.nombrebusqueda{
+    text-transform: uppercase;
+}
+
+.texto_categoria a{
+    text-decoration: none;
+    font-size: 15px;
+    color: gray;
+}
