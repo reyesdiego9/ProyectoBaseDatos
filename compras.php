@@ -1,15 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=}, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<?php
+    include_once './global/config.php';
+    include_once './global/conexion.php';
+    include './carrito.php';
+    include './templates/header.php';
+?>
     <main>
         <div class="container my-5 py-5">
+        <?php 
+            if($mensaje != ""){
+
+        ?>
+            <div class='alert alert-success'>
+                <?php
+                echo $mensaje;
+                ?>
+                <a href="./mostrarCarrito.php" class="badge badge-success">Ver carrito</a>
+            </div>
+        <?php
+            }    
+        ?>
             <section class="text-center">
                 <div class="row">
                     <?php
@@ -58,8 +67,21 @@
                                         ?>
                                     </small>
                                 </p>
+                                
                                 <button type="button" class="btn btn-black btn-rounded btn-sm px-3 boton_compra two">Comprar</button>
-                                <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra2">Carrito</button>
+                                <form action="" method="POST">
+                                    <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($row['ID_PRODUCTO'],COD,KEY);?>" />
+                                    <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($row['NOMBRE_PRODUCTO'],COD,KEY);?>" />
+                                    <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
+                                    <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>" />
+                                    <button  
+                                    class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra2" 
+                                    type="submit"
+                                    value="Agregar" 
+                                    name='btnAccion'> 
+                                       Carrito
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
