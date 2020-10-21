@@ -54,7 +54,7 @@
                             $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA 
                             FROM CAT 
                             WHERE CAT_ID_CATEGORIA = 69" ;
-                            $conn = oci_connect("diegopapi", "toor", "localhost:1521/xe", 'AL32UTF8');
+                            $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                             $prueba = oci_parse($conn, $sql1);
                             oci_execute($prueba);
                             while($row = oci_fetch_array($prueba)){
@@ -76,7 +76,7 @@
                         <ul class="submenu dropdown-menu">
                           <?php
                             $sql1 = "SELECT * FROM CAT WHERE CAT_ID_CATEGORIA = 70" ;
-                            $conn = oci_connect("diegopapi", "toor", "localhost:1521/xe", 'AL32UTF8');
+                            $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                             $prueba = oci_parse($conn, $sql1);
                             oci_execute($prueba);
                             while($row = oci_fetch_array($prueba)){
@@ -97,7 +97,7 @@
                         <ul class="submenu dropdown-menu">
                           <?php
                             $sql1 = "SELECT Nombre_Categoria FROM CAT WHERE CAT_ID_CATEGORIA = 71" ;
-                            $conn = oci_connect("diegopapi", "toor", "localhost:1521/xe", 'AL32UTF8');
+                            $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                             $prueba = oci_parse($conn, $sql1);
                             oci_execute($prueba);
                             while($row = oci_fetch_array($prueba)){
@@ -125,7 +125,7 @@
                         $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA
                         FROM CAT
                         WHERE CAT_ID_CATEGORIA = 38" ;
-                        $conn = oci_connect("diegopapi", "toor", "localhost:1521/xe", 'AL32UTF8');
+                        $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                         $prueba = oci_parse($conn, $sql1);
                         oci_execute($prueba);
                         while($row = oci_fetch_array($prueba)){
@@ -148,7 +148,7 @@
                     $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA
                     FROM CAT
                     WHERE CAT_ID_CATEGORIA = 11" ;
-                    $conn = oci_connect("diegopapi", "toor", "localhost:1521/xe", 'AL32UTF8');
+                    $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
@@ -171,7 +171,7 @@
                     $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA 
                     FROM CAT 
                     WHERE CAT_ID_CATEGORIA = 5";
-                    $conn = oci_connect("diegopapi", "toor", "localhost:1521/xe", 'AL32UTF8');
+                    $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
@@ -192,7 +192,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <?php
                     $sql1 = "SELECT Nombre_Categoria from CAT WHERE CAT_ID_CATEGORIA = 48 OR CAT_ID_CATEGORIA = 63";
-                    $conn = oci_connect("diegopapi", "toor", "localhost:1521/xe", 'AL32UTF8');
+                    $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
@@ -214,7 +214,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <?php
                     $sql1 = "SELECT Nombre_Categoria FROM CAT WHERE CAT_ID_CATEGORIA = 0" ;
-                    $conn = oci_connect("diegopapi", "toor", "localhost:1521/xe", 'AL32UTF8');
+                    $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
@@ -236,7 +236,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <?php
                     $sql1 = "SELECT Nombre_Categoria FROM CAT WHERE CAT_ID_CATEGORIA = 23" ;
-                    $conn = oci_connect("diegopapi", "toor", "localhost:1521/xe", 'AL32UTF8');
+                    $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
@@ -345,7 +345,7 @@
                     $sql1 = "SELECT * FROM 
                     (SELECT * FROM PROD INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria ORDER BY dbms_random.value)
                     WHERE rownum <= 4";
-                    $conn = oci_connect("diegopapi", "toor", "localhost:1521/xe", 'AL32UTF8');
+                    $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
@@ -418,7 +418,7 @@
                     $sql1 = "SELECT * FROM 
                     (SELECT * FROM PROD INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria ORDER BY dbms_random.value)
                     WHERE rownum <= 4";
-                    $conn = oci_connect("diegopapi", "toor", "localhost:1521/xe", 'AL32UTF8');
+                    $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
