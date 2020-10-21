@@ -68,7 +68,6 @@
                                     </small>
                                 </p>
                                 
-                                <button type="button" class="btn btn-black btn-rounded btn-sm px-3 boton_compra two">Comprar</button>
                                 <form action="" method="POST">
                                     <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($row['ID_PRODUCTO'],COD,KEY);?>" />
                                     <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($row['NOMBRE_PRODUCTO'],COD,KEY);?>" />
@@ -79,9 +78,16 @@
                                     type="submit"
                                     value="Agregar" 
                                     name='btnAccion'> 
-                                       Carrito
-                                    </button>
-                                </form>
+                                    Carrito
+                                </button>
+                                <a 
+                                type="submit"
+                                class="btn btn-black btn-rounded btn-sm px-3 boton_compra two"
+                                value="Agregar" 
+                                name='btnAccion'
+                                href="./mostrarCarrito.php">Informacion
+                                </a>
+                            </form>
                             </div>
                         </div>
                     </div>
