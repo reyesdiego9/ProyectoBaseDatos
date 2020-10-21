@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+<?php
+    include_once './global/config.php';
+    include_once './global/conexion.php';
+    include './carrito.php';
+    include './templates/header.php';
+?>
     <?php
         $sql3 = "SELECT * FROM PROD WHERE ID_PRODUCTO = ". (int) $_GET['id'];
         $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
@@ -68,18 +64,32 @@
             <!--/.Accordion wrapper-->
             <div class="font-weight-normal">
           
-          <p class="ml-xl-0 ml-4">
-            <?php
-                echo $row['DESCRIPCION'];
-            ?>
-          </p>
-            <p class="ml-xl-0 ml-4">
-            <strong>Stock: </strong>
-                <?php
-                    echo $row['STOCK'];
-                ?>
-            </p>
-        </div>
+                <p class="ml-xl-0 ml-4">
+                    <?php
+                        echo $row['DESCRIPCION'];
+                    ?>
+                </p>
+                    <p class="ml-xl-0 ml-4">
+                    <strong>Stock: </strong>
+                        <?php
+                            echo $row['STOCK'];
+                        ?>
+                    </p>
+                    <form action="" method="POST">
+                                <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($row['ID_PRODUCTO'],COD,KEY);?>" />
+                                <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($row['NOMBRE_PRODUCTO'],COD,KEY);?>" />
+                                <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
+                                <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>" />
+                                <button  
+                                class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra" 
+                                type="submit"
+                                value="Agregar" 
+                                name='btnAccion'> 
+                                Carrito
+                                </button>
+                    </form>
+
+            </div>
            
 
             </div>
@@ -94,9 +104,5 @@
     <?php
      }
     ?>
-    <script src="https://kit.fontawesome.com/42c6529a12.js" crossorigin="anonymous"></script> 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-</body>
-</html>
+
+<?php include './templates/footer.php'; ?>

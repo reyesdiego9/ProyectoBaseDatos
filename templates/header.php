@@ -13,9 +13,9 @@
         <a href="#" class="navbar-brand">
           <img src="./img/logo_1.png" alt="" width="80px" height="80px">
         </a>
-        <form class="form-inline my-2 my-lg-0 visible" >
-          <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search">
-          <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Buscar</button>
+        <form action="Busqueda.php" method="get" class="form-inline my-2 my-lg-0 visible" >
+        <input class="form-control mr-sm-2" name="busqueda" id="busqueda" type="text" placeholder="Escriba su busqueda" aria-label="Search">
+        <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Buscar" >
         </form>
         <div class='content'>
           <a href="./mostrarCarrito.php" class="navbar-brand" id="navbarNav">
@@ -25,7 +25,6 @@
             <img src="./img/baseline_account_circle_white_18dp.png" alt="" width="30px" height="30px">
           </a>
         </div>
-        
       </nav>
   </div>
 

@@ -87,7 +87,7 @@
                                 name='btnAccion'
                                 href="./mostrarCarrito.php">Informacion
                                 </a>
-                            </form>
+                                </form>
                             </div>
                         </div>
                     </div>
