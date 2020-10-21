@@ -22,7 +22,9 @@
             
             if(is_numeric(openssl_decrypt($_POST['cantidad'],COD,KEY))){
                 $CANTIDAD = openssl_decrypt($_POST['cantidad'],COD,KEY);
-            }else{ $mensaje = "Upss...".$ID; break;}
+            }else{ 
+                $CANTIDAD = $_POST['cantidad'];
+            }
 
             if(!isset($_SESSION['CARRITO'])){
                 $producto=array(
@@ -38,8 +40,6 @@
                 if(in_array($ID, $idProductos)){
                     echo "<script>alert('El producto ya ha sido seleccionado...');</script>";
                 }else{
-                    
-                    
                     $numeroProductos = count($_SESSION['CARRITO']);
                     $producto=array(
                         'ID' => $ID,

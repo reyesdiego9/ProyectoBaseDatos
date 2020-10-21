@@ -1,5 +1,7 @@
-<?php include './templates/header.php';?>
-
+<?php 
+session_start();
+  include './templates/header.php';
+?> 
   <main class="content">
         <div class="container-md ">
             <div id="carousel1" class="carousel slide" data-ride="carousel">

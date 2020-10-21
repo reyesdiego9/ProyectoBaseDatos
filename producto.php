@@ -69,24 +69,37 @@
                         echo $row['DESCRIPCION'];
                     ?>
                 </p>
-                    <p class="ml-xl-0 ml-4">
-                    <strong>Stock: </strong>
-                        <?php
-                            echo $row['STOCK'];
-                        ?>
-                    </p>
+                    
+                    
                     <form action="" method="POST">
-                                <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($row['ID_PRODUCTO'],COD,KEY);?>" />
-                                <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($row['NOMBRE_PRODUCTO'],COD,KEY);?>" />
-                                <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
-                                <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>" />
-                                <button  
-                                class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra" 
-                                type="submit"
-                                value="Agregar" 
-                                name='btnAccion'> 
-                                Carrito
-                                </button>
+                        <div class='d-flex justify-content-around'>
+                            <p class="ml-xl-0 ml-4">
+                            <strong>Stock: </strong>
+                                <?php
+                                    echo $row['STOCK'];
+                                ?>
+                            </p>
+                            <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($row['ID_PRODUCTO'],COD,KEY);?>" />
+                            <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($row['NOMBRE_PRODUCTO'],COD,KEY);?>" />
+                            <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
+                            <div class="sm-form">
+                                <input type="number" 
+                                id="cantidad"
+                                name="cantidad"
+                                value="1"
+                                min="1"
+                                max=<?php echo $row['STOCK'];?>
+                                >
+                            </div>
+                        </div>
+                        
+                        <button  
+                        class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect float-sm-right boton_compra" 
+                        type="submit"
+                        value="Agregar" 
+                        name='btnAccion'> 
+                        Carrito
+                        </button>
                     </form>
 
             </div>

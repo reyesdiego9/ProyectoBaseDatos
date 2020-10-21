@@ -1,3 +1,7 @@
+<?php 
+  
+  include 'singConexion.php';
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,12 +22,21 @@
         <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Buscar" >
         </form>
         <div class='content'>
+        <?php if(empty($user)) : ?>
           <a href="./mostrarCarrito.php" class="navbar-brand" id="navbarNav">
             <img src="./img/outline_shopping_cart_white_18dp.png" alt="" width="30px" height="30px">
           </a>
           <a href="./login.php" class="navbar-brand" id="navbarNav">
             <img src="./img/baseline_account_circle_white_18dp.png" alt="" width="30px" height="30px">
           </a>
+        <?php else: ?>
+          <a href="./mostrarCarrito.php" class="navbar-brand" id="navbarNav">
+            <img src="./img/outline_shopping_cart_white_18dp.png" alt="" width="30px" height="30px">
+          </a>
+          <a href="./login.php" class="navbar-brand" id="navbarNav">
+            <?php echo $user['NOMBRE_CLIENTE'] ?>
+          </a>
+        <?php endif; ?>
         </div>
       </nav>
   </div>
