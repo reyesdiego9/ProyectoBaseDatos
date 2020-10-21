@@ -255,7 +255,9 @@
             <div class="row">
                     <?php
                     $sql1 = "SELECT ID_PRODUCTO, NOMBRE_CATEGORIA, PRECIO, NOMBRE_PRODUCTO, DESCUENTO
-                    FROM prod INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria WHERE upper(nombre_producto) LIKE upper('%$busqueda%')";
+                    FROM prod INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria WHERE upper(nombre_producto) LIKE upper('%$busqueda%')
+                    OR upper(nombre_producto) LIKE upper('%$busqueda%')
+                    OR upper(nombre_categoria) LIKE upper('%$busqueda%')";
                     $conn = oci_connect("jordi", "clave", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
