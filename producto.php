@@ -10,7 +10,7 @@
 <body>
     <?php
         $sql3 = "SELECT * FROM PROD WHERE ID_PRODUCTO = ". (int) $_GET['id'];
-        $conn = oci_connect("jordi", "clave", "localhost:1521/xe", 'AL32UTF8');
+        $conn = oci_connect("jordi2", "clave", "localhost:1521/xe", 'AL32UTF8');
         $prueba = oci_parse($conn, $sql3);
         oci_execute($prueba);
         while($row = oci_fetch_array($prueba)){

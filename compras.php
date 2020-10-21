@@ -3,7 +3,6 @@
     include_once './global/conexion.php';
     include './carrito.php';
     include './templates/header.php';
-    include 'Ccompra.php';
 ?>
     <main>
         <div class="container my-5 py-5">
@@ -27,7 +26,7 @@
                         FROM PROD
                         INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria
                         WHERE prod.cat_id_categoria = ". (int) $_GET['id'];
-                        $conn = oci_connect("jordi", "clave", "localhost:1521/xe", 'AL32UTF8');
+                        $conn = oci_connect("jordi2", "clave", "localhost:1521/xe", 'AL32UTF8');
                         $prueba = oci_parse($conn, $sql);
                         oci_execute($prueba);
                         while($row = oci_fetch_array($prueba)){
