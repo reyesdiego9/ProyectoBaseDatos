@@ -1,5 +1,8 @@
 
 <?php
+include_once './global/config.php';
+include_once './global/conexion.php';
+include './carrito.php';
 include './templates/header.php';
 ?>
 
@@ -85,39 +88,32 @@ include './templates/header.php';
             <!-- Grid row -->
             <div class="row">
                     <?php
-                    $rand = range(1, 500);
-                    shuffle($rand);
-                    $i = 1;
-                    $sql1 = "SELECT * FROM 
-                    (SELECT * FROM PROD INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria ORDER BY dbms_random.value)
-                    WHERE rownum <= 3";
-                    $conn = oci_connect("jordi", "clave", "localhost:1521/xe", 'AL32UTF8');
-                    $prueba = oci_parse($conn, $sql1);
-                    oci_execute($prueba);
-                    while($row = oci_fetch_array($prueba)){
+                        $rand = range(1, 500);
+                        shuffle($rand);
+                        $i = 1;
+                        $sql1 = "SELECT * FROM 
+                        (SELECT * FROM PROD INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria ORDER BY dbms_random.value)
+                        WHERE rownum <= 3";
+                        $conn = oci_connect("jordi", "clave", "localhost:1521/xe", 'AL32UTF8');
+                        $prueba = oci_parse($conn, $sql1);
+                        oci_execute($prueba);
+                        while($row = oci_fetch_array($prueba)){
                     ?>
                     <div class="col-lg-4 col-md-12 mb-4">
-                        <a href="" class="waves-effect waves-light">
+                        <a <?php echo "href='producto.php?id=".$row['ID_PRODUCTO']."'"; ?> class="waves-effect waves-light">
                             <?php
                             echo "<img src='prueba.php?id=".$row['ID_PRODUCTO']."' class='img-responsive producto_imagen' alt='' >"
                             ?>
                         </a>
                         <div class="card">
                             <div class="card-body">
-                                <p class="mb-1 texto_categoria">
-                                    <a href="" class="font-weight-bold black-text">
+                                <p class="mb-1 texto_producto">
+                                    <a <?php echo "href='producto.php?id=".$row['ID_PRODUCTO']."'"; ?> class="font-weight-bold black-text">
                                         <?php
-                                        echo $row['NOMBRE_CATEGORIA'];
+                                        echo $row['NOMBRE_PRODUCTO'];
                                         ?>
                                     </a>
                                 </p>
-		                  	<h5 class="mb-1 texto_producto">
-                        <strong>
-                            <?php
-                            echo "<a href='producto.php?id=".$row['ID_PRODUCTO']."' class='dark-grey-text'>".$row['NOMBRE_PRODUCTO']."</a>";
-                            ?>
-                        </strong>
-                        </h5>
                                 <p class="mb-1">
                                     <small class="mr-1">
                                         <?php
@@ -139,8 +135,27 @@ include './templates/header.php';
                                         ?>
                                     </small>
                                 </p>
-                                <button type="button" class="btn btn-black btn-rounded btn-sm px-3">Buy Now</button>
-                                <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">Details</button>
+                                
+                                <form action="" method="POST">
+                                    <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($row['ID_PRODUCTO'],COD,KEY);?>" />
+                                    <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($row['NOMBRE_PRODUCTO'],COD,KEY);?>" />
+                                    <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
+                                    <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>" />
+                                    <button  
+                                    class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra2" 
+                                    type="submit"
+                                    value="Agregar" 
+                                    name='btnAccion'> 
+                                    Carrito
+                                </button>
+                                <a 
+                                type="submit"
+                                class="btn btn-black btn-rounded btn-sm px-3 boton_compra two"
+                                value="Agregar" 
+                                name='btnAccion'
+                                href="./mostrarCarrito.php">Informacion
+                                </a>
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -166,39 +181,32 @@ include './templates/header.php';
             <!-- Grid row -->
             <div class="row">
                     <?php
-                    $rand = range(1, 500);
-                    shuffle($rand);
-                    $i = 1;
-                    $sql1 = "SELECT * FROM 
-                    (SELECT * FROM PROD INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria ORDER BY dbms_random.value)
-                    WHERE rownum <= 3";
-                    $conn = oci_connect("jordi", "clave", "localhost:1521/xe", 'AL32UTF8');
-                    $prueba = oci_parse($conn, $sql1);
-                    oci_execute($prueba);
-                    while($row = oci_fetch_array($prueba)){
+                        $rand = range(1, 500);
+                        shuffle($rand);
+                        $i = 1;
+                        $sql1 = "SELECT * FROM 
+                        (SELECT * FROM PROD INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria ORDER BY dbms_random.value)
+                        WHERE rownum <= 3";
+                        $conn = oci_connect("jordi", "clave", "localhost:1521/xe", 'AL32UTF8');
+                        $prueba = oci_parse($conn, $sql1);
+                        oci_execute($prueba);
+                        while($row = oci_fetch_array($prueba)){
                     ?>
                     <div class="col-lg-4 col-md-12 mb-4">
-                        <a href="" class="waves-effect waves-light">
+                        <a <?php echo "href='producto.php?id=".$row['ID_PRODUCTO']."'"; ?> class="waves-effect waves-light">
                             <?php
                             echo "<img src='prueba.php?id=".$row['ID_PRODUCTO']."' class='img-responsive producto_imagen' alt='' >"
                             ?>
                         </a>
                         <div class="card">
                             <div class="card-body">
-                                <p class="mb-1 texto_categoria">
-                                    <a href="" class="font-weight-bold black-text">
+                                <p class="mb-1 texto_producto">
+                                    <a <?php echo "href='producto.php?id=".$row['ID_PRODUCTO']."'"; ?> class="font-weight-bold black-text">
                                         <?php
-                                        echo $row['NOMBRE_CATEGORIA'];
+                                        echo $row['NOMBRE_PRODUCTO'];
                                         ?>
                                     </a>
                                 </p>
-		                  	<h5 class="mb-1 texto_producto">
-                        <strong>
-                            <?php
-                            echo "<a href='producto.php?id=".$row['ID_PRODUCTO']."' class='dark-grey-text'>".$row['NOMBRE_PRODUCTO']."</a>";
-                            ?>
-                        </strong>
-                        </h5>
                                 <p class="mb-1">
                                     <small class="mr-1">
                                         <?php
@@ -220,8 +228,27 @@ include './templates/header.php';
                                         ?>
                                     </small>
                                 </p>
-                                <button type="button" class="btn btn-black btn-rounded btn-sm px-3">Buy Now</button>
-                                <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">Details</button>
+                                
+                                <form action="" method="POST">
+                                    <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($row['ID_PRODUCTO'],COD,KEY);?>" />
+                                    <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($row['NOMBRE_PRODUCTO'],COD,KEY);?>" />
+                                    <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
+                                    <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>" />
+                                    <button  
+                                    class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra2" 
+                                    type="submit"
+                                    value="Agregar" 
+                                    name='btnAccion'> 
+                                    Carrito
+                                </button>
+                                <a 
+                                type="submit"
+                                class="btn btn-black btn-rounded btn-sm px-3 boton_compra two"
+                                value="Agregar" 
+                                name='btnAccion'
+                                href="./mostrarCarrito.php">Informacion
+                                </a>
+                            </form>
                             </div>
                         </div>
                     </div>
