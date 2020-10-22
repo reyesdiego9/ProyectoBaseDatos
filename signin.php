@@ -12,7 +12,7 @@
         $sql = 'INSERT INTO 
         CLIENTE(EMAIL, NOMBRE_CLIENTE, APELLIDOS_CLIENTE, DIRECCION, CONTRASEÑA, NUM_TELEFONO)
         VALUES (:correo, :nombre, :apellido, :dir, :passw, :telefono)';
-        $conn = oci_connect("jordi2", "clave", "localhost:1521/xe", 'AL32UTF8');
+        $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
         $prueba = oci_parse($conn, $sql);
         $correo =  strtolower($_POST['correo']);
         oci_bind_by_name($prueba, ':correo', $correo);

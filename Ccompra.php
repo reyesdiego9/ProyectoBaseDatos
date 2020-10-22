@@ -7,7 +7,7 @@ include './templates/header.php';
 <h3>Estado de la compra</h3>
 <?php
 if(!empty($_SESSION['CARRITO'])){
-$conn = oci_connect("jordi2", "clave", "localhost:1521/xe", 'AL32UTF8');
+$conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
 $delivdate = date('d-m-o');
  if(!empty($user)){
     $correo =$user['EMAIL'];

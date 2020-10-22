@@ -92,7 +92,7 @@
                         $sql1 = "SELECT * FROM 
                         (SELECT * FROM PROD INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria ORDER BY dbms_random.value)
                         WHERE rownum <= 3";
-                        $conn = oci_connect("jordi2", "clave", "localhost:1521/xe", 'AL32UTF8');
+                        $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                         $prueba = oci_parse($conn, $sql1);
                         oci_execute($prueba);
                         while($row = oci_fetch_array($prueba)){
@@ -178,7 +178,7 @@
                         $sql1 = "SELECT * FROM 
                         (SELECT * FROM PROD INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria ORDER BY dbms_random.value)
                         WHERE rownum <= 3";
-                        $conn = oci_connect("jordi2", "clave", "localhost:1521/xe", 'AL32UTF8');
+                        $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                         $prueba = oci_parse($conn, $sql1);
                         oci_execute($prueba);
                         while($row = oci_fetch_array($prueba)){

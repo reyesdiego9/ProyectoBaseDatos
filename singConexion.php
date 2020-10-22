@@ -4,7 +4,7 @@
           FROM CLIENTE
           WHERE EMAIL=:email
         ";
-        $conn = oci_connect("jordi2", "clave", "localhost:1521/xe", 'AL32UTF8');
+        $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
         $prueba = oci_parse($conn, $sql);
         oci_bind_by_name($prueba, ':email', $_SESSION['user_id']);
         oci_execute($prueba);
