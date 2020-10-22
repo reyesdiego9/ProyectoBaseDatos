@@ -52,21 +52,20 @@
                           <div class="col-md-8 col-10 my-5">
                               <div class="row justify-content-center px-3 mb-3"> <a href="./base.php"><img id="logo" src="./img/Sin título-1.png"></a></div>
                               <h3 class="mb-5 text-center heading">Somos Alvah</h3>
-                              <h6 class="msg-info">Porfavor entre con tu cuenta</h6>
-                              <div class="form-group"> <label class="form-control-label text-muted">Username</label> <input type="text" id="email" name="email" placeholder="Phone no or email id" class="form-control"> </div>
-                              <div class="form-group"> <label class="form-control-label text-muted">Password</label> <input type="password" id="psw" name="psw" placeholder="Password" class="form-control"> </div>
-                              <div class="row justify-content-center my-3 px-3"> <button class="btn-block btn-color">Login to Tidi</button> </div>
-                              <div class="row justify-content-center my-2"> <a href="#"><small class="text-muted">Forgot Password?</small></a> </div>
+                              <h6 class="msg-info">Porfavor entre con su cuenta</h6>
+                              <div class="form-group"> <label class="form-control-label text-muted">Correo</label> <input type="text" id="email" name="email" placeholder="Phone no or email id" class="form-control"> </div>
+                              <div class="form-group"> <label class="form-control-label text-muted">Contraseña</label> <input type="password" id="psw" name="psw" placeholder="Password" class="form-control"> </div>
+                              <div class="row justify-content-center my-3 px-3"> <button class="btn-block btn-color">Entra a Alvah</button> </div>
                           </div>
                       </div>
-                      <div class="bottom text-center mb-5">
-                          <a href="./signin.php" class="sm-text mx-auto mb-3">Don't have an account?<button class="btn btn-white ml-2">Create new</button></a>
-                      </div>
-                  </form>
+                    </form>
+                    <div class="bottom text-center mb-5">
+                        <p href="./signin.php" class="sm-text mx-auto mb-3">No tienes una cuenta?<a href="./signin.php"><button type='submit' class="btn btn-white ml-2">Creala ya</button></a></p>
+                    </div>
               </div>
               <div class="card card2">
                   <div class="my-auto mx-md-5 px-md-5 right">
-                      <h3 class="text-white">We are more than just a company</h3> <small class="text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</small>
+                      <h3 class="text-white">Somos más que una compañia</h3> <small class="text-white">Somos la mejor pagina web de compras en linea en Guatemala, busca el producto que quieres y compralo ya!!!!</small>
                   </div>
               </div>
           </div>

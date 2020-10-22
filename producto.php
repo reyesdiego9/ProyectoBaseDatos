@@ -94,7 +94,7 @@
                         </div>
                         
                         <button  
-                        class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect float-sm-right boton_compra" 
+                        class="btn btn-primary btn-lg btn-block waves-effect float-sm-right boton_compra" 
                         type="submit"
                         value="Agregar" 
                         name='btnAccion'> 

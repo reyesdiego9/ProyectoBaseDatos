@@ -1,5 +1,7 @@
 <?php 
-session_start();
+  include_once './global/config.php';
+  include_once './global/conexion.php';
+  include './carrito.php';
   include './templates/header.php';
 ?> 
   <main class="content">
@@ -89,7 +91,7 @@ session_start();
                     $i = 1;
                     $sql1 = "SELECT * FROM 
                     (SELECT * FROM PROD INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria ORDER BY dbms_random.value)
-                    WHERE rownum <= 4";
+                    WHERE rownum <= 3";
                     $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
@@ -138,8 +140,19 @@ session_start();
                                         ?>
                                     </small>
                                 </p>
-                                <button type="button" class="btn btn-black btn-rounded btn-sm px-3">Buy Now</button>
-                                <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">Details</button>
+                                <form action="" method="POST">
+                                    <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($row['ID_PRODUCTO'],COD,KEY);?>" />
+                                    <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($row['NOMBRE_PRODUCTO'],COD,KEY);?>" />
+                                    <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
+                                    <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>" />
+                                    <button  
+                                    class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra two" 
+                                    type="submit"
+                                    value="Agregar" 
+                                    name='btnAccion'> 
+                                        Carrito
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -170,7 +183,7 @@ session_start();
                     $i = 1;
                     $sql1 = "SELECT * FROM 
                     (SELECT * FROM PROD INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria ORDER BY dbms_random.value)
-                    WHERE rownum <= 4";
+                    WHERE rownum <= 3";
                     $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
@@ -219,8 +232,19 @@ session_start();
                                         ?>
                                     </small>
                                 </p>
-                                <button type="button" class="btn btn-black btn-rounded btn-sm px-3">Buy Now</button>
-                                <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">Details</button>
+                                <form action="" method="POST">
+                                    <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($row['ID_PRODUCTO'],COD,KEY);?>" />
+                                    <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($row['NOMBRE_PRODUCTO'],COD,KEY);?>" />
+                                    <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
+                                    <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>" />
+                                    <button  
+                                    class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra two" 
+                                    type="submit"
+                                    value="Agregar" 
+                                    name='btnAccion'> 
+                                        Carrito
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

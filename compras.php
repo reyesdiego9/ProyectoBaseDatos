@@ -74,19 +74,12 @@
                                     <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
                                     <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>" />
                                     <button  
-                                    class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra2" 
+                                    class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra two" 
                                     type="submit"
                                     value="Agregar" 
                                     name='btnAccion'> 
                                         Carrito
                                     </button>
-                                <a 
-                                type="submit"
-                                class="btn btn-black btn-rounded btn-sm px-3 boton_compra two"
-                                value="Agregar" 
-                                name='btnAccion'
-                                href="./mostrarCarrito.php">Informacion
-                                </a>
                                 </form>
                             </div>
                         </div>
