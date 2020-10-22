@@ -22,14 +22,15 @@
             <section class="text-center">
                 <div class="row">
                     <?php
-                        $sql = "SELECT ID_PRODUCTO, NOMBRE_PRODUCTO, PRECIO, DESCUENTO
+                        $sql = "SELECT ID_PRODUCTO, NOMBRE_PRODUCTO, PRECIO, DESCUENTO, STOCK
                         FROM PROD
                         INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria
                         WHERE prod.cat_id_categoria = ". (int) $_GET['id'];
                         $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                         $prueba = oci_parse($conn, $sql);
                         oci_execute($prueba);
-                        while($row = oci_fetch_array($prueba)){
+                        while($row = oci_fetch_array($prueba)){ 
+                            if($row['STOCK'] > 0){
                     ?>
                     <div class="col-lg-4 col-md-12 mb-4">
                         <a <?php echo "href='producto.php?id=".$row['ID_PRODUCTO']."'"; ?> class="waves-effect waves-light">
@@ -85,6 +86,7 @@
                         </div>
                     </div>
                     <?php
+                            }
                         }
                     ?>
                 </div>
