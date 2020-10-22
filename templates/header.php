@@ -61,8 +61,101 @@
               <li class="nav-item active">
                 <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
               </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Ropa</a>
+              <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+                    Ropa
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                        <a class="dropdown-item" href="#">Hombre &raquo</a>
+                        <ul class="submenu dropdown-menu">
+                          <?php
+                            $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA 
+                            FROM CAT 
+                            WHERE CAT_ID_CATEGORIA = 81" ;
+                            $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
+                            $prueba = oci_parse($conn, $sql1);
+                            oci_execute($prueba);
+                            while($row = oci_fetch_array($prueba)){
+                          ?>
+                            <li>
+                              <a class="dropdown-item" href="">
+                                <?php  
+                                  echo $row['NOMBRE_CATEGORIA'];
+                                ?>
+                              </a>
+                            </li>
+                          <?php
+                          }
+                          ?>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Niño &raquo</a>
+                        <ul class="submenu dropdown-menu">
+                          <?php
+                            $sql1 = "SELECT * FROM CAT WHERE CAT_ID_CATEGORIA = 83" ;
+                            $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
+                            $prueba = oci_parse($conn, $sql1);
+                            oci_execute($prueba);
+                            while($row = oci_fetch_array($prueba)){
+                          ?>
+                            <li>
+                              <?php  
+                                  echo "<a class='dropdown-item' href='compras.php?id=".$row['CAT_ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
+                              ?>
+                              </a>
+                            </li>
+                          <?php
+                          }
+                          ?>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Mujer &raquo</a>
+                        <ul class="submenu dropdown-menu">
+                          <?php
+                            $sql1 = "SELECT Nombre_Categoria FROM CAT WHERE CAT_ID_CATEGORIA = 82" ;
+                            $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
+                            $prueba = oci_parse($conn, $sql1);
+                            oci_execute($prueba);
+                            while($row = oci_fetch_array($prueba)){
+                          ?>
+                            <li>
+                              <a class="dropdown-item" href="">
+                                <?php  
+                                  echo $row['NOMBRE_CATEGORIA'];
+                                ?>
+                              </a>
+                            </li>
+                          <?php
+                          }
+                          ?>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="#">Niña &raquo</a>
+                        <ul class="submenu dropdown-menu">
+                          <?php
+                            $sql1 = "SELECT Nombre_Categoria FROM CAT WHERE CAT_ID_CATEGORIA = 84" ;
+                            $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
+                            $prueba = oci_parse($conn, $sql1);
+                            oci_execute($prueba);
+                            while($row = oci_fetch_array($prueba)){
+                          ?>
+                            <li>
+                              <a class="dropdown-item" href="">
+                                <?php  
+                                  echo $row['NOMBRE_CATEGORIA'];
+                                ?>
+                              </a>
+                            </li>
+                          <?php
+                          }
+                          ?>
+                        </ul>
+                    </li>
+                  </ul>
               </li>
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
