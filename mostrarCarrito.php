@@ -85,16 +85,22 @@
             <strong>Q<?php echo number_format($total,2) ?></strong>
             </h4>
         </td>
-        <td colspan="3" class="text-right">
-            <button type="button" class="btn btn-primary btn-rounded">Complete purchase
+       <!--  <form action="Ccompra.php" colspan="3" class="text-right">
+            <button type="submit" class="btn btn-primary btn-rounded">COMPLETAR COMPRA
             <i class="fas fa-angle-right right"></i>
             </button>
-        </td>
+        </form> -->
         </tr>
           <!-- Fourth row -->
 
         </tbody>
+        
       </table>
+      <form action="confirmaciondecompra.php" method="POST" class="form-inline my-2 my-lg-0 visible" >
+        <button name="btnAccion" value="comprar" type="submit" class="btn btn-primary btn-rounded">COMPLETAR COMPRA
+            <i class="fas fa-angle-right right"></i>
+        </button>
+        </form>
     </div>
   </section>
   <!--Section: Content-->

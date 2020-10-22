@@ -359,3 +359,12 @@ button.navbar-toggler{
     }
     }
     }
+    .formulariocompra{
+        padding: 70px !important;
+        margin: 20px 40px;
+        border: 0.2px solid gray;
+    }
+    .titulocompra{
+        padding-bottom: 25px;
+    }
+    
