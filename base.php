@@ -1,5 +1,7 @@
 <?php 
-session_start();
+  include_once './global/config.php';
+  include_once './global/conexion.php';
+  include './carrito.php';
   include './templates/header.php';
 ?> 
   <main class="content">
@@ -138,20 +140,13 @@ session_start();
                                     <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
                                     <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>" />
                                     <button  
-                                    class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra2" 
+                                    class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra two" 
                                     type="submit"
                                     value="Agregar" 
                                     name='btnAccion'> 
-                                    Carrito
-                                </button>
-                                <a 
-                                type="submit"
-                                class="btn btn-black btn-rounded btn-sm px-3 boton_compra two"
-                                value="Agregar" 
-                                name='btnAccion'
-                                href="./mostrarCarrito.php">Informacion
-                                </a>
-                            </form>
+                                        Carrito
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -224,27 +219,19 @@ session_start();
                                         ?>
                                     </small>
                                 </p>
-                                
                                 <form action="" method="POST">
                                     <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($row['ID_PRODUCTO'],COD,KEY);?>" />
                                     <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($row['NOMBRE_PRODUCTO'],COD,KEY);?>" />
                                     <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
                                     <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>" />
                                     <button  
-                                    class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra2" 
+                                    class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra two" 
                                     type="submit"
                                     value="Agregar" 
                                     name='btnAccion'> 
-                                    Carrito
-                                </button>
-                                <a 
-                                type="submit"
-                                class="btn btn-black btn-rounded btn-sm px-3 boton_compra two"
-                                value="Agregar" 
-                                name='btnAccion'
-                                href="./mostrarCarrito.php">Informacion
-                                </a>
-                            </form>
+                                        Carrito
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

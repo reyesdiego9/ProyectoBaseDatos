@@ -45,7 +45,6 @@
             <h5 class="mt-3">  
                 <strong><?php echo $producto['NOMBRE'] ?></strong>
             </h5>
-            <p class="text-muted">Apple</p>
             </td>
             <td></td>
             <td>Q<?php echo $producto['PRECIO'] ?></td>

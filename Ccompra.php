@@ -4,6 +4,10 @@ include_once './global/config.php';
 include_once './global/conexion.php';
 include './carrito.php';
 include './templates/header.php';
+?>
+<h3>Estado de la compra</h3>
+<?php
+if(!empty($_SESSION['CARRITO'])){
 $conn = oci_connect("jordi2", "clave", "localhost:1521/xe", 'AL32UTF8');
 $delivdate = date('d-m-o');
  if(!empty($user)){
@@ -78,4 +82,18 @@ oci_execute($prueba);
 foreach($_SESSION['CARRITO'] as $indice => $producto){
     unset($_SESSION['CARRITO'][$indice]);
 } 
+echo "<script>alert('SU COMPRA HA SIDO REALIZADA CON EXITO')</script>";
+?>
+ <div class="alert alert-success">
+        SE REALIZO SU COMPRA CON EXITO
+    </div>
+<?php
+}else{
+?>
+<div class="alert alert-danger">
+        SU COMPRA NO PUEDE SER PROCESADA
+    </div>
+<?php
+}
+    include './templates/footer.php'
 ?>

@@ -94,4 +94,6 @@ CONFIRMACION DE COMPRA
 </form>
 <?php
 }
+
+include './templates/footer.php'
 ?>

@@ -30,12 +30,22 @@
             <img src="./img/baseline_account_circle_white_18dp.png" alt="" width="30px" height="30px">
           </a>
         <?php else: ?>
-          <a href="./mostrarCarrito.php" class="navbar-brand" id="navbarNav">
-            <img src="./img/outline_shopping_cart_white_18dp.png" alt="" width="30px" height="30px">
-          </a>
-          <a href="./login.php" class="navbar-brand" id="navbarNav">
-            <?php echo $user['NOMBRE_CLIENTE'] ?>
-          </a>
+          
+          <ul class="navbar-nav"> 
+            <li "nav-item active">
+              <a href="./mostrarCarrito.php" class="navbar-brand" id="navbarNav">
+                <img src="./img/outline_shopping_cart_white_18dp.png" alt="" width="30px" height="30px">
+              </a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?php echo $user['NOMBRE_CLIENTE'] ?>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="logout.php">Cerrar Sesion</a>
+              </div>
+            </li>
+          </ul>
         <?php endif; ?>
         </div>
       </nav>
