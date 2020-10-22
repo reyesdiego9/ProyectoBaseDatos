@@ -14,7 +14,7 @@
 <body aria-busy="true">
 <div class="top-container">
       <nav class="navbar nav1 navbar-expand-lg navbar-dark">
-        <a href="#" class="navbar-brand">
+        <a href="base.php" class="navbar-brand">
           <img src="./img/logo_1.png" alt="" width="80px" height="80px">
         </a>
         <form action="Busqueda.php" method="get" class="form-inline my-2 my-lg-0 visible" >
@@ -59,7 +59,7 @@
         <div class="collapse navbar-collapse justify-content-center " id="navbarNav">
           <ul class="navbar-nav ">
               <li class="nav-item active">
-                <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="base.php">Inicio <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
@@ -80,9 +80,9 @@
                           ?>
                             <li>
                               <a class="dropdown-item" href="">
-                                <?php  
-                                  echo $row['NOMBRE_CATEGORIA'];
-                                ?>
+                              <?php  
+                                echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
+                              ?>
                               </a>
                             </li>
                           <?php
@@ -95,14 +95,13 @@
                         <ul class="submenu dropdown-menu">
                           <?php
                             $sql1 = "SELECT * FROM CAT WHERE CAT_ID_CATEGORIA = 83" ;
-                            $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                             $prueba = oci_parse($conn, $sql1);
                             oci_execute($prueba);
                             while($row = oci_fetch_array($prueba)){
                           ?>
                             <li>
                               <?php  
-                                  echo "<a class='dropdown-item' href='compras.php?id=".$row['CAT_ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
+                                echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
                               ?>
                               </a>
                             </li>
@@ -115,17 +114,15 @@
                         <a class="dropdown-item" href="#">Mujer &raquo</a>
                         <ul class="submenu dropdown-menu">
                           <?php
-                            $sql1 = "SELECT Nombre_Categoria FROM CAT WHERE CAT_ID_CATEGORIA = 82" ;
-                            $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
+                            $sql1 = "SELECT * FROM CAT WHERE CAT_ID_CATEGORIA = 82" ;
                             $prueba = oci_parse($conn, $sql1);
                             oci_execute($prueba);
                             while($row = oci_fetch_array($prueba)){
                           ?>
                             <li>
-                              <a class="dropdown-item" href="">
-                                <?php  
-                                  echo $row['NOMBRE_CATEGORIA'];
-                                ?>
+                              <?php  
+                                echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
+                              ?>
                               </a>
                             </li>
                           <?php
@@ -137,17 +134,15 @@
                         <a class="dropdown-item" href="#">Niña &raquo</a>
                         <ul class="submenu dropdown-menu">
                           <?php
-                            $sql1 = "SELECT Nombre_Categoria FROM CAT WHERE CAT_ID_CATEGORIA = 84" ;
-                            $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
+                            $sql1 = "SELECT * FROM CAT WHERE CAT_ID_CATEGORIA = 84" ;
                             $prueba = oci_parse($conn, $sql1);
                             oci_execute($prueba);
                             while($row = oci_fetch_array($prueba)){
                           ?>
                             <li>
-                              <a class="dropdown-item" href="">
-                                <?php  
-                                  echo $row['NOMBRE_CATEGORIA'];
-                                ?>
+                              <?php  
+                                echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
+                              ?>
                               </a>
                             </li>
                           <?php
@@ -175,11 +170,9 @@
                             while($row = oci_fetch_array($prueba)){
                           ?>
                             <li>
-                              <a class="dropdown-item" href="">
-                                <?php  
-                                  echo $row['NOMBRE_CATEGORIA'];
-                                ?>
-                              </a>
+                              <?php  
+                              echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
+                              ?>
                             </li>
                           <?php
                           }
@@ -218,11 +211,9 @@
                             while($row = oci_fetch_array($prueba)){
                           ?>
                             <li>
-                              <a class="dropdown-item" href="">
-                                <?php  
-                                  echo $row['NOMBRE_CATEGORIA'];
-                                ?>
-                              </a>
+                            <?php  
+                            echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
+                            ?>
                             </li>
                           <?php
                           }
@@ -271,7 +262,6 @@
                       <?php  
                         echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
                       ?>
-                    </a>
                     <?php
                     }
                     ?>
