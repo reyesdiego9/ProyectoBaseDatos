@@ -97,8 +97,8 @@
         </tbody>
         
       </table>
-      <form action="Ccompra.php" method="POST" class="form-inline my-2 my-lg-0 visible" >
-        <button type="submit" class="btn btn-primary btn-rounded">COMPLETAR COMPRA
+      <form action="confirmaciondecompra.php" method="POST" class="form-inline my-2 my-lg-0 visible" >
+        <button name="btnAccion" value="comprar" type="submit" class="btn btn-primary btn-rounded">COMPLETAR COMPRA
             <i class="fas fa-angle-right right"></i>
         </button>
         </form>

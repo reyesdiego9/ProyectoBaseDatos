@@ -18,13 +18,8 @@
           <img src="./img/logo_1.png" alt="" width="80px" height="80px">
         </a>
         <form action="Busqueda.php" method="get" class="form-inline my-2 my-lg-0 visible" >
-<<<<<<< HEAD
           <input class="form-control mr-sm-2" name="busqueda" id="busqueda" type="text" placeholder="Escriba su busqueda" aria-label="Search" value="<?php if(empty($busqueda)){echo "";}else if(!empty($busqueda)){echo $busqueda;}?>">
           <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Buscar" >
-=======
-        <input class="form-control mr-sm-2" name="busqueda" id="busqueda" type="text" placeholder="Escriba su busqueda" aria-label="Search">
-        <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Buscar" >
->>>>>>> 003249c7c0fc1e9479e92f12996ea3ba40b8988b
         </form>
         <div class='content'>
         <?php if(empty($user)) : ?>

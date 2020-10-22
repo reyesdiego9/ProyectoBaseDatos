@@ -1,18 +1,7 @@
-<<<<<<< HEAD
-
-<?php
-include_once './global/config.php';
-include_once './global/conexion.php';
-include './carrito.php';
-include './templates/header.php';
-?>
-
-=======
 <?php 
 session_start();
   include './templates/header.php';
 ?> 
->>>>>>> 003249c7c0fc1e9479e92f12996ea3ba40b8988b
   <main class="content">
         <div class="container-md ">
             <div id="carousel1" class="carousel slide" data-ride="carousel">
