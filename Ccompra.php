@@ -1,4 +1,3 @@
-
 <?php
 include_once './global/config.php';
 include_once './global/conexion.php';
@@ -21,7 +20,7 @@ $delivdate = date('d-m-o');
     $apellido=$_GET['apellidos'];
     $direccion=$_GET['direccion'];
 }
-$idpago = $_GET['metodop'];
+$idpago=$_GET['metodop'];
 //NUMERO DE FACTURA CORRESPONDIENTE
 $sql1 = "SELECT MAX(ID_FACTURA) AS REG FROM FACTURA"; 
 $prueba = oci_parse($conn, $sql1); 
@@ -37,7 +36,6 @@ if($row = oci_fetch_array($prueba)){
 } 
 //INSERSION DE FACTURA
 $fecha= "to_date('".$delivdate."','DD/MM/YYYY')";
-$idpago=1;
 $sql1 = "INSERT INTO FACTURA (ID_FACTURA, FECHA, ID_PAGO, EMAIL, NOMBRE, APELLIDO, DIRECCION)
 VALUES ($idfact, to_date('".$delivdate."','DD/MM/YYYY'), $idpago,'$correo', upper('$nombre'),upper('$apellido'),upper('$direccion'))"; 
 $prueba = oci_parse($conn, $sql1); 
@@ -81,19 +79,19 @@ oci_execute($prueba);
 }
 foreach($_SESSION['CARRITO'] as $indice => $producto){
     unset($_SESSION['CARRITO'][$indice]);
-} 
-echo "<script>alert('SU COMPRA HA SIDO REALIZADA CON EXITO')</script>";
-?>
- <div class="alert alert-success">
-        SE REALIZO SU COMPRA CON EXITO
-    </div>
-<?php
-}else{
-?>
-<div class="alert alert-danger">
-        SU COMPRA NO PUEDE SER PROCESADA
-    </div>
-<?php
 }
-    include './templates/footer.php'
+if($idpago==2){
+    include './Formulario_de_pago.php';
+}else{
+    echo "<script>alert('SU COMPRA HA SIDO REALIZADA CON EXITO')</script>";
+    ?>
+     <div class="alert alert-success">
+            SE REALIZO SU COMPRA CON EXITO
+        </div>
+    <?php
+}
+   
+
+}
+include './templates/footer.php'
 ?>
