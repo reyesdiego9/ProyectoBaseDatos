@@ -1,244 +1,14 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body aria-busy="true">
-<div class="top-container">
-    <?php
 
-    $busqueda = strtolower($_REQUEST['busqueda']);
+<?php
+  $busqueda = strtolower($_REQUEST['busqueda']);
     if(empty($busqueda)){
         header("location: base.php");
     }
-    ?>
-      <nav class="navbar nav1 navbar-expand-lg navbar-dark">
-        <a href="#" class="navbar-brand">
-          <img src="./img/logo_1.png" alt="" width="80px" height="80px">
-        </a>
-        <form action="Busqueda.php" method="get" class="form-inline my-2 my-lg-0 visible" >
-          <input class="form-control mr-sm-2" name="busqueda" id="busqueda" type="text" placeholder="Escriba su busqueda" aria-label="Search" value="<?php echo $busqueda;?>">
-          <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Buscar" >
-        </form>
-        <div class='content'>
-          <a href="./cart.html" class="navbar-brand" id="navbarNav">
-            <img src="./img/outline_shopping_cart_white_18dp.png" alt="" width="30px" height="30px">
-          </a>
-          <a href="./login.html" class="navbar-brand" id="navbarNav">
-            <img src="./img/baseline_account_circle_white_18dp.png" alt="" width="30px" height="30px">
-          </a>
-        </div>
-        
-      </nav>
-  </div>
-
-  <div class="header" id="myHeader">
-      <nav class="navbar hola navbar-expand-lg navbar-dark" id="myHeader">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center " id="navbarNav">
-          <ul class="navbar-nav ">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Ropa</a>
-              </li>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                    Zapatos  
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                        <a class="dropdown-item" href="#">Hombre &raquo</a>
-                        <ul class="submenu dropdown-menu">
-                          <?php
-                            $sql1 = "SELECT Nombre_Categoria FROM CAT WHERE CAT_ID_CATEGORIA = 69" ;
-                            $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
-                            $prueba = oci_parse($conn, $sql1);
-                            oci_execute($prueba);
-                            while($row = oci_fetch_array($prueba)){
-                          ?>
-                            <li>
-                              <a class="dropdown-item" href="">
-                                <?php  
-                                  echo $row['NOMBRE_CATEGORIA'];
-                                ?>
-                              </a>
-                            </li>
-                          <?php
-                          }
-                          ?>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Niño &raquo</a>
-                        <ul class="submenu dropdown-menu">
-                          <?php
-                            $sql1 = "SELECT * FROM CAT WHERE CAT_ID_CATEGORIA = 70" ;
-                            $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
-                            $prueba = oci_parse($conn, $sql1);
-                            oci_execute($prueba);
-                            while($row = oci_fetch_array($prueba)){
-                          ?>
-                            <li>
-                              <?php  
-                                  echo "<a class='dropdown-item' href='compras.php?id=".$row['CAT_ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
-                              ?>
-                              </a>
-                            </li>
-                          <?php
-                          }
-                          ?>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Mujer &raquo</a>
-                        <ul class="submenu dropdown-menu">
-                          <?php
-                            $sql1 = "SELECT Nombre_Categoria FROM CAT WHERE CAT_ID_CATEGORIA = 71" ;
-                            $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
-                            $prueba = oci_parse($conn, $sql1);
-                            oci_execute($prueba);
-                            while($row = oci_fetch_array($prueba)){
-                          ?>
-                            <li>
-                              <a class="dropdown-item" href="">
-                                <?php  
-                                  echo $row['NOMBRE_CATEGORIA'];
-                                ?>
-                              </a>
-                            </li>
-                          <?php
-                          }
-                          ?>
-                        </ul>
-                    </li>
-                  </ul>
-              </li>
-              <li class="nav-item active">
-                <a class="nav-link" href="#">Electrodomesticos</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Celulares
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <?php
-                    $sql1 = "SELECT NOMBRE_CATEGORIA, ID_CATEGORIA FROM CAT WHERE CAT_ID_CATEGORIA = 11" ;
-                    $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
-                    $prueba = oci_parse($conn, $sql1);
-                    oci_execute($prueba);
-                    while($row = oci_fetch_array($prueba)){
-                  ?>
-                      <?php  
-                        echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
-                      ?>
-                    </a>
-                    <?php
-                    }
-                    ?>
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Audio
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <?php
-                    $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA 
-                    FROM CAT 
-                    WHERE CAT_ID_CATEGORIA = 5";
-                    $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
-                    $prueba = oci_parse($conn, $sql1);
-                    oci_execute($prueba);
-                    while($row = oci_fetch_array($prueba)){
-                  ?>
-                      <?php  
-                        echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
-                      ?>
-                    <?php
-                    }
-                    ?>
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Tv y Video
-                </a>
-                
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <?php
-                    $sql1 = "SELECT Nombre_Categoria from CAT WHERE CAT_ID_CATEGORIA = 48 OR CAT_ID_CATEGORIA = 63";
-                    $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
-                    $prueba = oci_parse($conn, $sql1);
-                    oci_execute($prueba);
-                    while($row = oci_fetch_array($prueba)){
-                  ?>
-                    <a class="dropdown-item menunav" href="#">
-                      <?php  
-                      echo $row['NOMBRE_CATEGORIA'];
-                      ?>
-                    </a>
-                    <?php
-                    }
-                    ?>
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Videojuegos
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <?php
-                    $sql1 = "SELECT Nombre_Categoria FROM CAT WHERE CAT_ID_CATEGORIA = 0" ;
-                    $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
-                    $prueba = oci_parse($conn, $sql1);
-                    oci_execute($prueba);
-                    while($row = oci_fetch_array($prueba)){
-                  ?>
-                    <a class="dropdown-item menunav" href="#">
-                      <?php  
-                      echo $row['NOMBRE_CATEGORIA'];
-                      ?>
-                    </a>
-                    <?php
-                    }
-                    ?>
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Computación
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <?php
-                    $sql1 = "SELECT Nombre_Categoria FROM CAT WHERE CAT_ID_CATEGORIA = 23" ;
-                    $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
-                    $prueba = oci_parse($conn, $sql1);
-                    oci_execute($prueba);
-                    while($row = oci_fetch_array($prueba)){
-                  ?>
-                    <a class="dropdown-item menunav" href="#">
-                      <?php  
-                      echo $row['NOMBRE_CATEGORIA'];
-                      ?>
-                    </a>
-                    <?php
-                    }
-                    ?>
-                </div>
-              </li>
-          </ul>
-        </div>
-      </nav>
-  </div>
-
+    include_once './global/config.php';
+    include_once './global/conexion.php';
+    include './carrito.php';
+    include './templates/header.php';
+?>
   <main class="content">
         <hr>
         <section id='productos1'>
@@ -254,17 +24,17 @@
             <!-- Grid row -->
             <div class="row">
                     <?php
-                    $sql1 = "SELECT ID_PRODUCTO, NOMBRE_CATEGORIA, PRECIO, NOMBRE_PRODUCTO, DESCUENTO
-                    FROM prod INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria WHERE upper(nombre_producto) LIKE upper('%$busqueda%')
-                    OR upper(nombre_producto) LIKE upper('%$busqueda%')
-                    OR upper(nombre_categoria) LIKE upper('%$busqueda%')";
-                    $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
-                    $prueba = oci_parse($conn, $sql1);
-                    oci_execute($prueba);
-                    while($row = oci_fetch_array($prueba)){
+                       $sql1 = "SELECT ID_PRODUCTO, NOMBRE_CATEGORIA, PRECIO, NOMBRE_PRODUCTO, DESCUENTO
+                       FROM prod INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria WHERE upper(nombre_producto) LIKE upper('%$busqueda%')
+                       OR upper(nombre_producto) LIKE upper('%$busqueda%')
+                       OR upper(nombre_categoria) LIKE upper('%$busqueda%')";
+                       $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
+                       $prueba = oci_parse($conn, $sql1);
+                       oci_execute($prueba);
+                       while($row = oci_fetch_array($prueba)){
                     ?>
                     <div class="col-lg-4 col-md-12 mb-4">
-                        <a href="" class="waves-effect waves-light">
+                        <a <?php echo "href='producto.php?id=".$row['ID_PRODUCTO']."'"; ?> class="waves-effect waves-light">
                             <?php
                             echo "<img src='prueba.php?id=".$row['ID_PRODUCTO']."' class='img-responsive producto_imagen' alt='' >"
                             ?>
@@ -272,16 +42,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <p class="mb-1 texto_producto">
-                                    <a href="" class="font-weight-bold black-text">
+                                    <a <?php echo "href='producto.php?id=".$row['ID_PRODUCTO']."'"; ?> class="font-weight-bold black-text">
                                         <?php
                                         echo $row['NOMBRE_PRODUCTO'];
-                                        ?>
-                                    </a>
-                                </p>
-                                <p class="mb-1 texto_categoria">
-                                    <a href="" class="font-weight-bold black-text">
-                                        <?php
-                                        echo $row['NOMBRE_CATEGORIA'];
                                         ?>
                                     </a>
                                 </p>
@@ -306,8 +69,27 @@
                                         ?>
                                     </small>
                                 </p>
-                                <button type="button" class="btn btn-black btn-rounded btn-sm px-3">Buy Now</button>
-                                <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">Details</button>
+                                
+                                <form action="" method="POST">
+                                    <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($row['ID_PRODUCTO'],COD,KEY);?>" />
+                                    <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($row['NOMBRE_PRODUCTO'],COD,KEY);?>" />
+                                    <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
+                                    <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>" />
+                                    <button  
+                                    class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra2" 
+                                    type="submit"
+                                    value="Agregar" 
+                                    name='btnAccion'> 
+                                    Carrito
+                                </button>
+                                <a 
+                                type="submit"
+                                class="btn btn-black btn-rounded btn-sm px-3 boton_compra two"
+                                value="Agregar" 
+                                name='btnAccion'
+                                href="./mostrarCarrito.php">Informacion
+                                </a>
+                            </form>
                             </div>
                         </div>
                     </div>
@@ -333,39 +115,32 @@
             <!-- Grid row -->
             <div class="row">
                     <?php
-                    $rand = range(1, 500);
-                    shuffle($rand);
-                    $i = 1;
-                    $sql1 = "SELECT * FROM 
-                    (SELECT * FROM PROD INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria ORDER BY dbms_random.value)
-                    WHERE rownum <= 3";
-                    $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
-                    $prueba = oci_parse($conn, $sql1);
-                    oci_execute($prueba);
-                    while($row = oci_fetch_array($prueba)){
+                      $rand = range(1, 500);
+                      shuffle($rand);
+                      $i = 1;
+                      $sql1 = "SELECT * FROM 
+                      (SELECT * FROM PROD INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria ORDER BY dbms_random.value)
+                      WHERE rownum <= 3";
+                      $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
+                      $prueba = oci_parse($conn, $sql1);
+                      oci_execute($prueba);
+                      while($row = oci_fetch_array($prueba)){
                     ?>
                     <div class="col-lg-4 col-md-12 mb-4">
-                        <a href="" class="waves-effect waves-light">
+                        <a <?php echo "href='producto.php?id=".$row['ID_PRODUCTO']."'"; ?> class="waves-effect waves-light">
                             <?php
                             echo "<img src='prueba.php?id=".$row['ID_PRODUCTO']."' class='img-responsive producto_imagen' alt='' >"
                             ?>
                         </a>
                         <div class="card">
                             <div class="card-body">
-                                <p class="mb-1 texto_categoria">
-                                    <a href="" class="font-weight-bold black-text">
+                                <p class="mb-1 texto_producto">
+                                    <a <?php echo "href='producto.php?id=".$row['ID_PRODUCTO']."'"; ?> class="font-weight-bold black-text">
                                         <?php
-                                        echo $row['NOMBRE_CATEGORIA'];
+                                        echo $row['NOMBRE_PRODUCTO'];
                                         ?>
                                     </a>
                                 </p>
-		                  	<h5 class="mb-1 texto_producto">
-                        <strong>
-                            <?php
-                            echo "<a href='producto.php?id=".$row['ID_PRODUCTO']."' class='dark-grey-text'>".$row['NOMBRE_PRODUCTO']."</a>";
-                            ?>
-                        </strong>
-                        </h5>
                                 <p class="mb-1">
                                     <small class="mr-1">
                                         <?php
@@ -387,8 +162,27 @@
                                         ?>
                                     </small>
                                 </p>
-                                <button type="button" class="btn btn-black btn-rounded btn-sm px-3">Buy Now</button>
-                                <button type="button" class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect">Details</button>
+                                
+                                <form action="" method="POST">
+                                    <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($row['ID_PRODUCTO'],COD,KEY);?>" />
+                                    <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($row['NOMBRE_PRODUCTO'],COD,KEY);?>" />
+                                    <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
+                                    <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>" />
+                                    <button  
+                                    class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra2" 
+                                    type="submit"
+                                    value="Agregar" 
+                                    name='btnAccion'> 
+                                    Carrito
+                                </button>
+                                <a 
+                                type="submit"
+                                class="btn btn-black btn-rounded btn-sm px-3 boton_compra two"
+                                value="Agregar" 
+                                name='btnAccion'
+                                href="./mostrarCarrito.php">Informacion
+                                </a>
+                            </form>
                             </div>
                         </div>
                     </div>

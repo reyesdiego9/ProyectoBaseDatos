@@ -26,24 +26,24 @@
       <div class="modal__content">
         <h2>Sus datos de pago</h2>
 
-        <form>
+        <form action="guardartarjeta.php" method="post">
           <ul class="form-list">
             <li class="form-list__row">
               <label>Nombre</label>
-              <input type="text" name="" required="" />
+              <input type="text" name="nombretarjeta" id="nombretarjeta" required="" />
             </li>
             <li class="form-list__row">
               <label>Número de tarjeta</label>
               <div id="input--cc" class="creditcard-icon">
-                <input type="text" name="cc_number" required="" />
+                <input type="text" name="cc_number" id="cc_number" required="" />
               </div>
             </li>
             <li class="form-list__row form-list__row--inline">
               <div>
                 <label>Fecha de caducidad</label>
                 <div class="form-list__input-inline">
-                  <input type="text" name="cc_month" placeholder="MM"  minlength="2" maxlength="2" required="" />
-                  <input type="text" name="cc_year" placeholder="YY"  minlength="2" maxlength="2" required="" />
+                  <input type="text" name="mes" id="mes" placeholder="MM"  minlength="2" maxlength="2" required="" />
+                  <input type="text" name="año" id="año" placeholder="YY"  minlength="2" maxlength="2" required="" />
                 </div>
               </div>
               <div>
@@ -60,7 +60,7 @@
             </li>
             <li class="form-list__row form-list__row--agree">
               <label>
-                <input type="checkbox" name="save_cc" checked="checked">
+              <input type="checkbox" name="save_cc" checked="checked">
                 Guardar mi tarjeta para futuras compras
               </label>
             </li>

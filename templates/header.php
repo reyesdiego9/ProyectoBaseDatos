@@ -18,8 +18,8 @@
           <img src="./img/logo_1.png" alt="" width="80px" height="80px">
         </a>
         <form action="Busqueda.php" method="get" class="form-inline my-2 my-lg-0 visible" >
-        <input class="form-control mr-sm-2" name="busqueda" id="busqueda" type="text" placeholder="Escriba su busqueda" aria-label="Search">
-        <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Buscar" >
+          <input class="form-control mr-sm-2" name="busqueda" id="busqueda" type="text" placeholder="Escriba su busqueda" aria-label="Search" value="<?php if(empty($busqueda)){echo "";}else if(!empty($busqueda)){echo $busqueda;}?>">
+          <input class="btn btn-outline-light my-2 my-sm-0" type="submit" value="Buscar" >
         </form>
         <div class='content'>
         <?php if(empty($user)) : ?>
@@ -314,19 +314,20 @@
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Videojuegos
+                 Videojuegos
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <?php
-                    $sql1 = "SELECT Nombre_Categoria FROM CAT WHERE CAT_ID_CATEGORIA = 0" ;
+                    $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA
+                    FROM CAT
+                    WHERE CAT_ID_CATEGORIA = 0" ;
                     $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
                   ?>
-                    <a class="dropdown-item menunav" href="#">
                       <?php  
-                      echo $row['NOMBRE_CATEGORIA'];
+                        echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
                       ?>
                     </a>
                     <?php

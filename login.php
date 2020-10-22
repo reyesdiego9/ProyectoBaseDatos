@@ -18,7 +18,7 @@
             if(count($result) > 0 && password_verify($_POST['psw'], $result['CONTRASEÑA'])){
                 echo "<script> alert($message); </script>";
                 $_SESSION['user_id'] = $result['EMAIL'];
-                header('Location: /Oracle/base.php');
+                header('Location: /ProyectoBaseDatos/base.php');
             }else{
                 $message = 'Lo siento , estas credenciales no coinciden';
             }
