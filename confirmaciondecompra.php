@@ -3,7 +3,6 @@ include_once './global/config.php';
 include_once './global/conexion.php';
 include './carrito.php';
 include './templates/header.php';
-
 if(!empty($user)){
 ?>
 <form action="Ccompra.php" method="get" class="my-2 my-lg-0 visible " >
@@ -94,6 +93,5 @@ CONFIRMACION DE COMPRA
 </form>
 <?php
 }
-
 include './templates/footer.php'
 ?>

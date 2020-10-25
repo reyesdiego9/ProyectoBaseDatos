@@ -77,11 +77,14 @@ $prueba = oci_parse($conn, $sql1);
 oci_execute($prueba);
 
 }
-foreach($_SESSION['CARRITO'] as $indice => $producto){
-    unset($_SESSION['CARRITO'][$indice]);
-}
+
 if($idpago==2){
-    include './Formulario_de_pago.php';
+    ?>
+    <div class="alert alert-success">
+           SE ESTA FACTURANDO SU COMPRA...
+    </div>
+   <?php
+include './Formulario_de_pago.php';
 }else{
     echo "<script>alert('SU COMPRA HA SIDO REALIZADA CON EXITO')</script>";
     ?>
@@ -89,9 +92,12 @@ if($idpago==2){
             SE REALIZO SU COMPRA CON EXITO
         </div>
     <?php
+    foreach($_SESSION['CARRITO'] as $indice => $producto){
+        unset($_SESSION['CARRITO'][$indice]);
+    }
 }
    
+include './templates/footer.php';
 
 }
-include './templates/footer.php'
 ?>
