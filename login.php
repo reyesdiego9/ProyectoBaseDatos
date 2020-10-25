@@ -8,7 +8,7 @@
         FROM CLIENTE 
         WHERE EMAIL=:email
         ";
-        $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
+        $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
         $prueba = oci_parse($conn, $sql);  
         $correo = strtolower($_POST['email']);
         oci_bind_by_name($prueba, ':email', $correo);
@@ -18,7 +18,7 @@
             if(count($result) > 0 && password_verify($_POST['psw'], $result['CONTRASEÑA'])){
                 echo "<script> alert($message); </script>";
                 $_SESSION['user_id'] = $result['EMAIL'];
-                header('Location: /ProyectoBaseDatos/base.php');
+                header('Location: /Oracle/base.php');
             }else{
                 $message = 'Lo siento , estas credenciales no coinciden';
             }

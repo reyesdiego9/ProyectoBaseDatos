@@ -3,7 +3,7 @@ include_once './global/config.php';
 include_once './global/conexion.php';
 include './carrito.php';
 include './templates/header.php';
-$conn = oci_connect("jordi2", "clave", "localhost:1521/xe", 'AL32UTF8');
+$conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
 $correo=$user['EMAIL'];
 $sql1 = "DELETE FROM TARJETAS WHERE EMAIL='$correo'"; 
 $prueba = oci_parse($conn, $sql1);

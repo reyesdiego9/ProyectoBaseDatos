@@ -5,5 +5,5 @@
 
     session_destroy();
 
-    header('location: /ProyectoBaseDatos/base.php');
+    header('location: /Oracle/base.php');
 ?>

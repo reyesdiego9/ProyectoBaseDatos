@@ -6,7 +6,7 @@
 ?>
     <?php
         $sql3 = "SELECT * FROM PROD WHERE ID_PRODUCTO = ". (int) $_GET['id'];
-        $conn = oci_connect("jordi2", "clave", "localhost:1521/xe", 'AL32UTF8');
+        $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
         $prueba = oci_parse($conn, $sql3);
         oci_execute($prueba);
         while($row = oci_fetch_array($prueba)){
@@ -48,8 +48,10 @@
                             <strong>Q.".$row['PRECIO']."</strong>
                         </span>";
                     }else{
+                        $desc = $row['PRECIO']*($row['DESCUENTO']/100);
+                        $precio = $row['PRECIO'] - $desc;
                         echo "<span class='red-text font-weight-bold'>
-                        <strong>Q.".$row['DESCUENTO']."</strong>
+                        <strong>Q.".$precio."</strong>
                         </span>
                         <span class='grey-text'>
                         <small>
@@ -81,7 +83,17 @@
                             </p>
                             <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($row['ID_PRODUCTO'],COD,KEY);?>" />
                             <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($row['NOMBRE_PRODUCTO'],COD,KEY);?>" />
-                            <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
+                            <?php
+                                if($row['DESCUENTO']  == 0){
+                            ?>
+                                <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
+                            <?php
+                                }else{
+                            ?>
+                                    <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($precio,COD,KEY);?>" />
+                            <?php
+                                }
+                            ?>
                             <div class="sm-form">
                                 <input type="number" 
                                 id="cantidad"

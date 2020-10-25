@@ -13,6 +13,13 @@ include_once './global/conexion.php';
   <link rel="stylesheet" href="./css/Estilo.css">
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script type="text/javascript" src="https://cdn.conekta.io/js/latest/conekta.js"></script>
+  <style>
+    body{
+      background-color: rgba(0,0, 0, 0.80);  
+    }
+
+  </style>
+
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -33,7 +40,7 @@ include_once './global/conexion.php';
 if(!empty($user)){
   $tarjeta=$user['EMAIL'];
   $sql1 = "SELECT ID_TARJETA, NOMBRE_TARJETA, MES, AÑO FROM TARJETAS WHERE EMAIL = '$tarjeta'";
-  $conn = oci_connect("jordi2", "clave", "localhost:1521/xe", 'AL32UTF8');
+  $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
   $prueba = oci_parse($conn, $sql1);
   oci_execute($prueba);
   $row=oci_fetch_array($prueba);
@@ -100,7 +107,7 @@ if(!empty($user)){
             <li class="form-list__row">
               <label>Número de tarjeta</label>
               <div id="input--cc" class="creditcard-icon">
-                <input type="text" name="cc_number" id="cc_number" required="" />
+                <input type="text" name="cc_number" id="cc_number" required="" maxlength='16'/>
               </div>
             </li>
             <li class="form-list__row form-list__row--inline">

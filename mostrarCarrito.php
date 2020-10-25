@@ -53,7 +53,7 @@
             </td>
             <td class="font-weight-bold">
             <strong>Q<?php 
-            echo number_format($producto['PRECIO']*$producto['CANTIDAD'])  ?></strong>
+            echo number_format(($producto['PRECIO']*$producto['CANTIDAD']),2)  ?></strong>
             </td>
             <td>
             <form action="" method="post">

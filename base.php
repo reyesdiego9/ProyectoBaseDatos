@@ -92,7 +92,7 @@
                         $sql1 = "SELECT * FROM 
                         (SELECT * FROM PROD INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria ORDER BY dbms_random.value)
                         WHERE rownum <= 3";
-                        $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
+                        $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
                         $prueba = oci_parse($conn, $sql1);
                         oci_execute($prueba);
                         while($row = oci_fetch_array($prueba)){
@@ -120,11 +120,12 @@
                                                     <strong>Q.".$row['PRECIO']."</strong>
                                                 </span>";
                                             }else{
-                                                echo "
-                                                <span class='red-text font-weight-bold precio_producto'>
-                                                    <strong>Q.".$row['DESCUENTO']."</strong>
+                                                $desc = $row['PRECIO']*($row['DESCUENTO']/100);
+                                                $precio = $row['PRECIO'] - $desc;
+                                                echo "<span class='red-text font-weight-bold precio_producto'>
+                                                <strong>Q.".$precio."</strong>
                                                 </span>
-                                                <span class='grey-text precio_producto'>
+                                                <span class='red-text font-weight-bold precio_producto'>
                                                 <small>
                                                     <s>Q.".$row['PRECIO']."</s>
                                                 </small>
@@ -137,7 +138,17 @@
                                 <form action="" method="POST">
                                     <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($row['ID_PRODUCTO'],COD,KEY);?>" />
                                     <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($row['NOMBRE_PRODUCTO'],COD,KEY);?>" />
-                                    <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
+                                    <?php
+                                        if($row['DESCUENTO']  == 0){
+                                    ?>
+                                        <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
+                                    <?php
+                                        }else{
+                                    ?>
+                                            <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['DESCUENTO'],COD,KEY);?>" />
+                                    <?php
+                                        }
+                                    ?>
                                     <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>" />
                                     <button  
                                     class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra two" 
@@ -178,7 +189,7 @@
                         $sql1 = "SELECT * FROM 
                         (SELECT * FROM PROD INNER JOIN cat ON prod.cat_id_categoria = cat.id_categoria ORDER BY dbms_random.value)
                         WHERE rownum <= 3";
-                        $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
+                        $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
                         $prueba = oci_parse($conn, $sql1);
                         oci_execute($prueba);
                         while($row = oci_fetch_array($prueba)){
@@ -206,11 +217,12 @@
                                                     <strong>Q.".$row['PRECIO']."</strong>
                                                 </span>";
                                             }else{
-                                                echo "
-                                                <span class='red-text font-weight-bold precio_producto'>
-                                                    <strong>Q.".$row['DESCUENTO']."</strong>
+                                                $desc = $row['PRECIO']*($row['DESCUENTO']/100);
+                                                $precio = $row['PRECIO'] - $desc;
+                                                echo "<span class='red-text font-weight-bold precio_producto'>
+                                                <strong>Q.".$precio."</strong>
                                                 </span>
-                                                <span class='grey-text precio_producto'>
+                                                <span class='red-text font-weight-bold precio_producto'>
                                                 <small>
                                                     <s>Q.".$row['PRECIO']."</s>
                                                 </small>
@@ -222,7 +234,17 @@
                                 <form action="" method="POST">
                                     <input type="hidden" name="id" id="id" value="<?php echo openssl_encrypt($row['ID_PRODUCTO'],COD,KEY);?>" />
                                     <input type="hidden" name="nombre" id="nombre" value="<?php echo openssl_encrypt($row['NOMBRE_PRODUCTO'],COD,KEY);?>" />
-                                    <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
+                                    <?php
+                                        if($row['DESCUENTO']  == 0){
+                                    ?>
+                                        <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($row['PRECIO'],COD,KEY);?>" />
+                                    <?php
+                                        }else{
+                                    ?>
+                                         <input type="hidden" name="precio" id="precio" value="<?php echo openssl_encrypt($precio,COD,KEY);?>" />
+                                    <?php
+                                        }
+                                    ?>
                                     <input type="hidden" name="cantidad" id="cantidad" value="<?php echo openssl_encrypt(1,COD,KEY);?>" />
                                     <button  
                                     class="btn btn-outline-black btn-rounded btn-sm px-3 waves-effect boton_compra two" 

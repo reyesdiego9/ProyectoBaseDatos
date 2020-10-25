@@ -10,7 +10,7 @@ $nombret=$_GET['nombretarjeta'];
 $numt=$_GET['cc_number'];
 $año=$_GET['año'];
 $mes=$_GET['mes'];
-    $conn = oci_connect("jordi2", "clave", "localhost:1521/xe", 'AL32UTF8');
+    $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
     $sql1 = "INSERT INTO TARJETAS (ID_TARJETA, NOMBRE_TARJETA, EMAIL, MES, AÑO) 
     VALUES ($numt, '$nombret', '$mail', '$mes','$año')"; 
     $prueba = oci_parse($conn, $sql1); 

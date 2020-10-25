@@ -32,7 +32,7 @@ CONFIRMACION DE COMPRA
       <select class="form-control" name="metodop" id="metodop" >
         <?php
             $sql1 = "SELECT ID_PAGO, NOMBRE_PAGO FROM MPAGO";
-            $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
+            $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
             $prueba = oci_parse($conn, $sql1);
             oci_execute($prueba);
             while($row = oci_fetch_array($prueba)){
@@ -74,7 +74,7 @@ CONFIRMACION DE COMPRA
       <select class="form-control" name="metodop" id="metodop" >
         <?php
             $sql1 = "SELECT ID_PAGO, NOMBRE_PAGO FROM MPAGO";
-            $conn = oci_connect("DiegoReyes", "toor", "localhost:1521/xe", 'AL32UTF8');
+            $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
             $prueba = oci_parse($conn, $sql1);
             oci_execute($prueba);
             while($row = oci_fetch_array($prueba)){
