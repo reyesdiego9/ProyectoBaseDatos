@@ -1,5 +1,4 @@
 <?php 
-  
   include 'singConexion.php';
 ?>
 <!DOCTYPE html>
@@ -154,16 +153,16 @@
               </li>
               <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-                    Zapatos  
+                    Tv y video  
                   </a>
                   <ul class="dropdown-menu">
                     <li>
-                        <a class="dropdown-item" href="#">Hombre &raquo</a>
+                        <a class="dropdown-item" href="#">Tv &raquo</a>
                         <ul class="submenu dropdown-menu">
                           <?php
                             $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA 
                             FROM CAT 
-                            WHERE CAT_ID_CATEGORIA = 69" ;
+                            WHERE CAT_ID_CATEGORIA = 48" ;
                             $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
                             $prueba = oci_parse($conn, $sql1);
                             oci_execute($prueba);
@@ -180,34 +179,12 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">Niño &raquo</a>
+                        <a class="dropdown-item" href="#">Video &raquo</a>
                         <ul class="submenu dropdown-menu">
                           <?php
                             $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA 
                             FROM CAT 
-                            WHERE CAT_ID_CATEGORIA = 70" ;
-                            $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
-                            $prueba = oci_parse($conn, $sql1);
-                            oci_execute($prueba);
-                            while($row = oci_fetch_array($prueba)){
-                          ?>
-                            <li>
-                              <?php  
-                              echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
-                              ?>
-                            </li>
-                          <?php
-                          }
-                          ?>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">Mujer &raquo</a>
-                        <ul class="submenu dropdown-menu">
-                          <?php
-                            $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA 
-                            FROM CAT 
-                            WHERE CAT_ID_CATEGORIA = 71" ;
+                            WHERE CAT_ID_CATEGORIA = 63" ;
                             $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
                             $prueba = oci_parse($conn, $sql1);
                             oci_execute($prueba);
@@ -234,7 +211,6 @@
                         $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA
                         FROM CAT
                         WHERE CAT_ID_CATEGORIA = 38" ;
-                        $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
                         $prueba = oci_parse($conn, $sql1);
                         oci_execute($prueba);
                         while($row = oci_fetch_array($prueba)){
@@ -257,7 +233,6 @@
                     $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA
                     FROM CAT
                     WHERE CAT_ID_CATEGORIA = 11" ;
-                    $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
@@ -279,7 +254,6 @@
                     $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA 
                     FROM CAT 
                     WHERE CAT_ID_CATEGORIA = 5";
-                    $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
@@ -287,29 +261,6 @@
                       <?php  
                         echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
                       ?>
-                    <?php
-                    }
-                    ?>
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Tv y Video
-                </a>
-                
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <?php
-                    $sql1 = "SELECT Nombre_Categoria from CAT WHERE CAT_ID_CATEGORIA = 48 OR CAT_ID_CATEGORIA = 63";
-                    $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
-                    $prueba = oci_parse($conn, $sql1);
-                    oci_execute($prueba);
-                    while($row = oci_fetch_array($prueba)){
-                  ?>
-                    <a class="dropdown-item menunav" href="#">
-                      <?php  
-                      echo $row['NOMBRE_CATEGORIA'];
-                      ?>
-                    </a>
                     <?php
                     }
                     ?>
@@ -324,7 +275,6 @@
                     $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA
                     FROM CAT
                     WHERE CAT_ID_CATEGORIA = 0" ;
-                    $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
@@ -340,19 +290,19 @@
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Computación
+                 Computación
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <?php
-                    $sql1 = "SELECT Nombre_Categoria FROM CAT WHERE CAT_ID_CATEGORIA = 23" ;
-                    $conn = oci_connect("diego2", "clave", "localhost:1521/xe", 'AL32UTF8');
+                    $sql1 = "SELECT ID_CATEGORIA, NOMBRE_CATEGORIA
+                    FROM CAT
+                    WHERE CAT_ID_CATEGORIA = 23" ;
                     $prueba = oci_parse($conn, $sql1);
                     oci_execute($prueba);
                     while($row = oci_fetch_array($prueba)){
                   ?>
-                    <a class="dropdown-item menunav" href="#">
                       <?php  
-                      echo $row['NOMBRE_CATEGORIA'];
+                        echo "<a class='dropdown-item' href='compras.php?id=".$row['ID_CATEGORIA']."'>".$row['NOMBRE_CATEGORIA']."</a>";
                       ?>
                     </a>
                     <?php

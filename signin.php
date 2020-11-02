@@ -26,11 +26,7 @@
         $password = password_hash( $_POST['passw'], PASSWORD_BCRYPT);
         oci_bind_by_name($prueba, ':passw', $password);
         oci_execute($prueba);
-        if( oci_execute($prueba)){
-        $mensaje = "Usuario Registrado";
-        }else{
-        $mensaje = "Error con el usuario";
-        }
+        
     }else{
         $mensaje = "";
     }
@@ -57,7 +53,7 @@
               Crea tu usuario, es GRATIS!!
             </span>
           </div>
-          <form action="login.php" method="post" class='formulario'>
+          <form action="" method="post" class='formulario'>
               <div class="md-form">
                 <i class="fas fa-user prefix grey-text"></i>
                 <input type="text" id="form3" class="form-control" name="nombre" required>

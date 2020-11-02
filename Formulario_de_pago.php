@@ -45,7 +45,7 @@ if(!empty($user)){
   oci_execute($prueba);
   $row=oci_fetch_array($prueba);
 }
-  if(!empty($row)){
+  if($row != null){
   ?>
   <form action="guardartarjeta.php" method="get">
           <ul class="form-list">
