@@ -25,8 +25,13 @@
         oci_bind_by_name($prueba, ':dir', $dir);
         $password = password_hash( $_POST['passw'], PASSWORD_BCRYPT);
         oci_bind_by_name($prueba, ':passw', $password);
-        oci_execute($prueba);
-        
+       
+
+        if(oci_execute($prueba)){
+          header('Location: login.php');
+        }else{
+          $mensaje = "Error al ingresar cuenta";
+        }
     }else{
         $mensaje = "";
     }
@@ -53,7 +58,7 @@
               Crea tu usuario, es GRATIS!!
             </span>
           </div>
-          <form action="" method="post" class='formulario'>
+          <form action="signin.php" method="post" class='formulario'>
               <div class="md-form">
                 <i class="fas fa-user prefix grey-text"></i>
                 <input type="text" id="form3" class="form-control" name="nombre" required>
