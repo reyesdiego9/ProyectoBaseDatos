@@ -81,7 +81,7 @@
               </div>
               <div class="md-form">
                 <i class="fas fa-phone prefix grey-text"></i>
-                <input type="tel" id="form2" class="form-control" name='telefono' required>
+                <input type="tel" id="form2" class="form-control" name='telefono' maxlength="8" minlength="8" required>
                 <label for="form5">Telefono</label>
               </div>
               <div class="md-form">
